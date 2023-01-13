@@ -1,0 +1,21 @@
+{
+    'display_name': 'Francesco Petrosino',
+    'external_urls': {
+        'spotify': 'https://open.spotify.com/user/21ktslj6lkgx6wswmfwu5cwuq'
+    },
+    'followers': {
+        'href': None, 
+        'total': 11
+    },
+    'href': 'https://api.spotify.com/v1/users/21ktslj6lkgx6wswmfwu5cwuq', 
+    'id': '21ktslj6lkgx6wswmfwu5cwuq',
+    'images': [
+        {
+            'height': None, 
+            'url': 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=783680891738404&height=300&width=300&ext=1676120770&hash=AeSHumfCi6oGqpV3yOE', 
+            'width': None
+        }
+    ], 
+    'type': 'user', 
+    'uri': 'spotify:user:21ktslj6lkgx6wswmfwu5cwuq'
+}
