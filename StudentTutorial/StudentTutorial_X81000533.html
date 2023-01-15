@@ -14623,7 +14623,7 @@ I clients dovranno autenticarsi attraverso OAuth2.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Accesso-alle-API">Accesso alle API<a class="anchor-link" href="#Accesso-alle-API">&#182;</a></h2><p>Per poter utilizzare le API fornite da Spotify, è necessario sottoiscriversi a <strong><a href="https://developer.spotify.com/">Spotify Developer Dashboard</a></strong>.</p>
+<h2 id="Accesso-alle-API">Accesso alle API<a class="anchor-link" href="#Accesso-alle-API">&#182;</a></h2><p>Le API fornite da Spotify sono accessibili solamente attraverso un account Spotify Developer ed è quindi necessario sottoiscriversi a <strong><a href="https://developer.spotify.com/">Spotify Developer Dashboard</a></strong> per ottenere un token di autenticazione.</p>
 
 </div>
 </div>
@@ -14647,7 +14647,7 @@ I clients dovranno autenticarsi attraverso OAuth2.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Per questo <strong>Student Tutorial</strong>, l'app si chiamerà <em>ProgettoSMM</em> (da Social Media Management) e sarà un piccolo script in Python per ottenere un semplice riepilogo dell'attività di un account Spotify e inoltre visualizzare informazioni sulle sue 10 tracks più ascoltate.<br>
+<p>Per questo <strong>Student Tutorial</strong>, l'app si chiamerà <em>ProgettoSMM</em> (da Social Media Management) e sarà un piccolo script in Python per ottenere un semplice riepilogo dell'attività di un account Spotify e inoltre visualizzare informazioni sulle sue 30 tracks più ascoltate.<br>
 Una volta cliccato su <em>create an app</em> la schermata si richiede alcune informazioni necessarie per poi restituirti una piccola dashboard personale.</p>
 
 </div>
@@ -14888,21 +14888,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Ottenere-le-proprie-10-tracks-pi%C3%B9-ascoltate-e-le-informazioni-pi%C3%B9-rilevanti">Ottenere le proprie 10 tracks pi&#249; ascoltate e le informazioni pi&#249; rilevanti<a class="anchor-link" href="#Ottenere-le-proprie-10-tracks-pi%C3%B9-ascoltate-e-le-informazioni-pi%C3%B9-rilevanti">&#182;</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Analizzare con pandas:
-[] lista delle tracce più ascoltate
-[] informazioni dell'user</p>
-
+<h2 id="Ottenere-le-30-tracks-pi%C3%B9-ascoltate-e-le-informazioni-pi%C3%B9-rilevanti">Ottenere le 30 tracks pi&#249; ascoltate e le informazioni pi&#249; rilevanti<a class="anchor-link" href="#Ottenere-le-30-tracks-pi%C3%B9-ascoltate-e-le-informazioni-pi%C3%B9-rilevanti">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15086,7 +15072,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tracks_take</span> <span class="o">=</span> <span class="mi">10</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tracks_take</span> <span class="o">=</span> <span class="mi">30</span>
 
 <span class="n">raw_result</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">current_user_top_tracks</span><span class="p">(</span><span class="n">time_range</span><span class="o">=</span><span class="s1">&#39;medium_term&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">tracks_take</span><span class="p">)</span>
 </pre></div>
@@ -15366,6 +15352,346 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
       <td>https://api.spotify.com/v1/tracks/6z7tGTD6yvyl...</td>
       <td>67</td>
       <td>spotify:track:6z7tGTD6yvyloEm6K2H8EX</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>7xQAfvXzm3AkraOtGPWIZg</td>
+      <td>Wow.</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Hollywood's Bleeding</td>
+      <td>2019-09-06</td>
+      <td>17</td>
+      <td>spotify:album:4g1ZRSobMefqF6nelkgibi</td>
+      <td>1</td>
+      <td>149546</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/7xQAfvXzm3Ak...</td>
+      <td>82</td>
+      <td>spotify:track:7xQAfvXzm3AkraOtGPWIZg</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1P6TlFb8EVH2nCX3luVpZW</td>
+      <td>Scooby Doo</td>
+      <td>Pinguini Tattici Nucleari</td>
+      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
+      <td>AHIA!</td>
+      <td>2020-12-04</td>
+      <td>7</td>
+      <td>spotify:album:0b2peKNz7zmn4xIxfPBUPa</td>
+      <td>1</td>
+      <td>179124</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/1P6TlFb8EVH2...</td>
+      <td>65</td>
+      <td>spotify:track:1P6TlFb8EVH2nCX3luVpZW</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1x3Qb8np6S1UvpSLthwEJN</td>
+      <td>MI FAI IMPAZZIRE</td>
+      <td>BLANCO</td>
+      <td>spotify:artist:1MRiIeZbc0cRuxOafDUCtH</td>
+      <td>MI FAI IMPAZZIRE</td>
+      <td>2021-06-17</td>
+      <td>1</td>
+      <td>spotify:album:59L5yJfDpvDFynmhe2QbYS</td>
+      <td>1</td>
+      <td>220235</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/1x3Qb8np6S1U...</td>
+      <td>70</td>
+      <td>spotify:track:1x3Qb8np6S1UvpSLthwEJN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>79VpbVJ1asRXWjkbvlxFED</td>
+      <td>Di Notte (feat. Sfera Ebbasta &amp; Carl Brave)</td>
+      <td>Ernia</td>
+      <td>spotify:artist:3fhMfkPPzksWuw0hEm4ldm</td>
+      <td>Gemelli (ascendente Milano)</td>
+      <td>2021-05-20</td>
+      <td>18</td>
+      <td>spotify:album:5bIm3XT2nJAdPvTLsBlk8g</td>
+      <td>1</td>
+      <td>224175</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/79VpbVJ1asRX...</td>
+      <td>56</td>
+      <td>spotify:track:79VpbVJ1asRXWjkbvlxFED</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0hkY6Je3FYVPCCLZNtPKhH</td>
+      <td>Novità (feat. Rkomi, Ernia &amp; Tedua)</td>
+      <td>Night Skinny</td>
+      <td>spotify:artist:2E6AK3UPEGCvjnzuygCh2h</td>
+      <td>Mattoni</td>
+      <td>2019-09-12</td>
+      <td>16</td>
+      <td>spotify:album:1l1cFQQfIbsDDbPavkCosf</td>
+      <td>1</td>
+      <td>184807</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/0hkY6Je3FYVP...</td>
+      <td>57</td>
+      <td>spotify:track:0hkY6Je3FYVPCCLZNtPKhH</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>7IBGw13AbUorsu133u6Q0Z</td>
+      <td>Vieni A Ballare In Puglia</td>
+      <td>Caparezza</td>
+      <td>spotify:artist:4l0PmbNvFq3m5JaUuAPbcB</td>
+      <td>Le Dimensioni Del Mio Caos</td>
+      <td>2008-01-01</td>
+      <td>14</td>
+      <td>spotify:album:5OZ8PKJMSSWmmYz2YsHBMB</td>
+      <td>1</td>
+      <td>240533</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/7IBGw13AbUor...</td>
+      <td>56</td>
+      <td>spotify:track:7IBGw13AbUorsu133u6Q0Z</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>63WuQOXohQIxOxIFA2K7bR</td>
+      <td>SUPERMODEL</td>
+      <td>Måneskin</td>
+      <td>spotify:artist:0lAWpj5szCSwM4rUMHYmrr</td>
+      <td>SUPERMODEL</td>
+      <td>2022-05-13</td>
+      <td>1</td>
+      <td>spotify:album:5jhbLeXH1a3SRSOg84GSUn</td>
+      <td>1</td>
+      <td>148064</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/63WuQOXohQIx...</td>
+      <td>81</td>
+      <td>spotify:track:63WuQOXohQIxOxIFA2K7bR</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>7mxEWcW3A0jULs64ckyq9k</td>
+      <td>2step (feat. Ultimo)</td>
+      <td>Ed Sheeran</td>
+      <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
+      <td>2step (feat. Ultimo)</td>
+      <td>2022-05-06</td>
+      <td>2</td>
+      <td>spotify:album:3TDdlYSrE5WuOTiuyr9tTl</td>
+      <td>1</td>
+      <td>154160</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/7mxEWcW3A0jU...</td>
+      <td>55</td>
+      <td>spotify:track:7mxEWcW3A0jULs64ckyq9k</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>4qB5WfP7AzwPzU4OddDm4b</td>
+      <td>Chapeau (feat. Frah Quintale)</td>
+      <td>Carl Brave</td>
+      <td>spotify:artist:29nrwultxQ8jENVmXoyMqK</td>
+      <td>Notti Brave</td>
+      <td>2018-05-11</td>
+      <td>15</td>
+      <td>spotify:album:1BayCxyyUYlm3x0Ys1z4Fl</td>
+      <td>1</td>
+      <td>185840</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/4qB5WfP7AzwP...</td>
+      <td>54</td>
+      <td>spotify:track:4qB5WfP7AzwPzU4OddDm4b</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2hyvtl2bbuA8NdKeiI4Knx</td>
+      <td>Super Martina (feat. Gazzelle)</td>
+      <td>Lorenzo Fragola</td>
+      <td>spotify:artist:0tTS475qIqv3KXYZMXjsYy</td>
+      <td>Bengala</td>
+      <td>2018-04-27</td>
+      <td>10</td>
+      <td>spotify:album:2M4XsKijWoVsPultAM3F1e</td>
+      <td>1</td>
+      <td>178687</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/2hyvtl2bbuA8...</td>
+      <td>46</td>
+      <td>spotify:track:2hyvtl2bbuA8NdKeiI4Knx</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>3c1hhyuDTsP3hqRztpg2S5</td>
+      <td>Paraocchi</td>
+      <td>BLANCO</td>
+      <td>spotify:artist:1MRiIeZbc0cRuxOafDUCtH</td>
+      <td>Paraocchi</td>
+      <td>2021-02-25</td>
+      <td>1</td>
+      <td>spotify:album:2JFiCRthCdXKwqZBbVulT7</td>
+      <td>1</td>
+      <td>156083</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/3c1hhyuDTsP3...</td>
+      <td>56</td>
+      <td>spotify:track:3c1hhyuDTsP3hqRztpg2S5</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>1VNARx6Sm6ZYAsDMCGiU1B</td>
+      <td>LUNEDI'</td>
+      <td>Salmo</td>
+      <td>spotify:artist:3hBQ4zniNdQf1cqqo6hzuW</td>
+      <td>Playlist</td>
+      <td>2018-11-09</td>
+      <td>13</td>
+      <td>spotify:album:5F6r4JU7TdqI8YOWzj6Fyn</td>
+      <td>1</td>
+      <td>205266</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/1VNARx6Sm6ZY...</td>
+      <td>61</td>
+      <td>spotify:track:1VNARx6Sm6ZYAsDMCGiU1B</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>5LZVK19ieaV8Mk9FsqTL3F</td>
+      <td>Ridere</td>
+      <td>Pinguini Tattici Nucleari</td>
+      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
+      <td>Fuori dall'Hype Ringo Starr</td>
+      <td>2020-02-07</td>
+      <td>15</td>
+      <td>spotify:album:56JsicBPrw88plclhKK74J</td>
+      <td>1</td>
+      <td>214733</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/5LZVK19ieaV8...</td>
+      <td>69</td>
+      <td>spotify:track:5LZVK19ieaV8Mk9FsqTL3F</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1PWOkqMORYdGa0OEh2GaXM</td>
+      <td>Notti In Bianco</td>
+      <td>BLANCO</td>
+      <td>spotify:artist:1MRiIeZbc0cRuxOafDUCtH</td>
+      <td>Blu Celeste</td>
+      <td>2021-09-09</td>
+      <td>12</td>
+      <td>spotify:album:7zFt7hLRPxemmlzVzg5uec</td>
+      <td>1</td>
+      <td>176400</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/1PWOkqMORYdG...</td>
+      <td>65</td>
+      <td>spotify:track:1PWOkqMORYdGa0OEh2GaXM</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0ZI9cTwtcaYeVcFjwT51ow</td>
+      <td>Tu si a fine do' munno</td>
+      <td>Angelo Famao</td>
+      <td>spotify:artist:46otmViklVNVVCHQvUCWfC</td>
+      <td>Tu si a fine do' munno</td>
+      <td>2018-03-08</td>
+      <td>1</td>
+      <td>spotify:album:2NDLRqawa2dlbPCHjOW4ze</td>
+      <td>1</td>
+      <td>180402</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/0ZI9cTwtcaYe...</td>
+      <td>58</td>
+      <td>spotify:track:0ZI9cTwtcaYeVcFjwT51ow</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>4DRyrGfwWACRYP9BDnEFcq</td>
+      <td>BUGIE (feat. Rkomi &amp; Carl Brave)</td>
+      <td>Madame</td>
+      <td>spotify:artist:1vgQksyJ0IVz8y9XerEOy3</td>
+      <td>MADAME</td>
+      <td>2021-06-03</td>
+      <td>18</td>
+      <td>spotify:album:7oF6ed3aSHU6aDD4MD3LIr</td>
+      <td>1</td>
+      <td>171602</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/4DRyrGfwWACR...</td>
+      <td>53</td>
+      <td>spotify:track:4DRyrGfwWACRYP9BDnEFcq</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>4Ip9hR1xlH7OB8Rj4OleqG</td>
+      <td>Gioventù Brucata</td>
+      <td>Pinguini Tattici Nucleari</td>
+      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
+      <td>Gioventù brucata</td>
+      <td>2017-04-14</td>
+      <td>12</td>
+      <td>spotify:album:44CqJXEel3uPQZeg0ZHyct</td>
+      <td>1</td>
+      <td>324506</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/4Ip9hR1xlH7O...</td>
+      <td>45</td>
+      <td>spotify:track:4Ip9hR1xlH7OB8Rj4OleqG</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>50kpGaPAhYJ3sGmk6vplg0</td>
+      <td>Love Yourself</td>
+      <td>Justin Bieber</td>
+      <td>spotify:artist:1uNFoZAHBGtllmzznpCI3s</td>
+      <td>Purpose (Deluxe)</td>
+      <td>2015-11-13</td>
+      <td>19</td>
+      <td>spotify:album:6Fr2rQkZ383FcMqFyT7yPr</td>
+      <td>1</td>
+      <td>233720</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/50kpGaPAhYJ3...</td>
+      <td>85</td>
+      <td>spotify:track:50kpGaPAhYJ3sGmk6vplg0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>0bKDQionn4VKcgNKbs4SWX</td>
+      <td>Pastello Bianco</td>
+      <td>Pinguini Tattici Nucleari</td>
+      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
+      <td>AHIA!</td>
+      <td>2020-12-04</td>
+      <td>7</td>
+      <td>spotify:album:0b2peKNz7zmn4xIxfPBUPa</td>
+      <td>1</td>
+      <td>236417</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/0bKDQionn4VK...</td>
+      <td>72</td>
+      <td>spotify:track:0bKDQionn4VKcgNKbs4SWX</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>1uXJYnCsXy2v50y0fDEEiV</td>
+      <td>LA CANZONE NOSTRA ⟁ ︎(con BLANCO &amp; SALMO)</td>
+      <td>MACE</td>
+      <td>spotify:artist:7gjqZ8coFZimZDtdk04WP1</td>
+      <td>OBE</td>
+      <td>2021-02-04</td>
+      <td>17</td>
+      <td>spotify:album:2oT1W5fYFSfU3fz5Q55HWj</td>
+      <td>1</td>
+      <td>237613</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/1uXJYnCsXy2v...</td>
+      <td>63</td>
+      <td>spotify:track:1uXJYnCsXy2v50y0fDEEiV</td>
     </tr>
   </tbody>
 </table>
