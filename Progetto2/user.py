@@ -1,8 +1,6 @@
-class User(object):
+import json
 
-    # def __init__(self, display_name, user_id):
-    #     self.display_name = display_name
-    #     self.user_id = user_id
+class User(object):
 
     def __init__(self, user):
         self.display_name = user['display_name']
@@ -12,7 +10,9 @@ class User(object):
         print("L'username di {:s} è {:s}".format(self.display_name, self.user_id))
 
     def set_following_playlists(self, playlists):
-        self.following_playlists = playlists
+        json_p = json.dumps(playlists)
+        playlist_json = json.loads(json_p)
+        self.following_playlists = playlist_json
 
     def get_following_playlists(self):
         return self.following_playlists
