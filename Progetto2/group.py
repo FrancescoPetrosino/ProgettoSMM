@@ -16,6 +16,11 @@ class Group(object):
     def count(self) -> int:
         return len(self.list.items())
 
+    def print(self):
+        print('Il gruppo è composto da: ')
+        for user in self.list.values():
+            print(user.display_name)
+
     def get_from_list(self, index: int) -> User:
         return self.list[index]
 
