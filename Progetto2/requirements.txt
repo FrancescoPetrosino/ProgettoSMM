@@ -1,3 +1,5 @@
+pip
+
 pandas
 scikit-learn
 spotipy
