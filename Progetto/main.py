@@ -21,29 +21,35 @@ import keras as kf
 from InstagramAPI import InstagramAPI
 
 
-username="myusername"
-API = InstagramAPI(username, "mypw")
-API.login()
+username_ig="francy-98_ct@hotmail.it"
+password_ig="rufbo7-rozwat-jazCuz"
+# API = InstagramAPI(username_ig, password_ig)
+# API.setToken("ULyENxvgxoxksDcr9JlCMKEtr0Fgm6eX")
+
+# API.login()
+
+# API.getSelfUsernameInfo()
+# result = API.LastJson
+# print(result)
 
 
-
-#Prendere tutti i POST
-import time
+# #Prendere tutti i POST
+# import time
 myposts=[]
-has_more_posts = True
-max_id=""
+# has_more_posts = True
+# max_id=""
 
 
-#DATI GREZZI
-while has_more_posts:
-    API.getSelfUserFeed(maxid=max_id)
-    if API.LastJson['more_available'] is not True:
-        has_more_posts = False #stop condition
-        print ("stopped")
+# #DATI GREZZI
+# while has_more_posts:
+#     API.getSelfUserFeed(maxid=max_id)
+#     if API.LastJson['more_available'] is not True:
+#         has_more_posts = False #stop condition
+#         print ("stopped")
     
-    max_id = API.LastJson.get('next_max_id','')
-    myposts.extend(API.LastJson['items']) #merge lists
-    time.sleep(2) # per evitare flooding nei server
+#     max_id = API.LastJson.get('next_max_id','')
+#     myposts.extend(API.LastJson['items']) #merge lists
+#     time.sleep(2) # per evitare flooding nei server
 
 
 
