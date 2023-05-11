@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14525,6 +14539,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   display: none;
 }
 
+@page {
+    margin: 0.5in; /* Margin for each printed piece of paper */
+}
+
 @media print {
   .jp-Cell-inputWrapper,
   .jp-Cell-outputWrapper {
@@ -14559,12 +14577,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14573,7 +14591,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14584,25 +14602,26 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="img/spotify.jpg" alt="spotify.jpg"></p>
-<p><br></p>
-<h2 id="Cos'%C3%A8-Spotify">Cos'&#232; Spotify<a class="anchor-link" href="#Cos'%C3%A8-Spotify">&#182;</a></h2><blockquote><p><strong>Spotify</strong> è un servizio musicale svedese che offre lo <em>streaming on demand</em> di una selezione di brani di varie case discografiche ed etichette indipendenti, incluse <em>Sony, EMI, Warner Music Group e Universal</em>. Lanciato nell'ottobre 2008 dalla startup svedese Spotify AB, il servizio ha oltre 75 milioni di utenti al 10 giugno 2015. Il 14 dicembre 2016 vengono raggiunti i 40 milioni di utenti paganti, acquisendo in soli sei mesi 10 milioni di abbonati. Ha registrato più di 140 milioni di utenti attivi mensili nel giugno 2017 e più di 70 milioni di abbonati nel gennaio 2018.<br><br>
-<em>Spotify</em> è disponibile in versione gratuita e a pagamento, nella maggior parte dei Paesi dell'Europa, nella quasi totalità delle Americhe, in Australia, in Nuova Zelanda e in alcuni Paesi dell'Asia. Il servizio è fruibile attraverso Microsoft Windows, macOS, GNU/Linux (solo per Debian e Ubuntu e senza supporto tecnico), Google Chrome OS, Telia Digital-tv e i dispositivi mobili equipaggiati con iOS (iPod/iPhone/iPad), Android, BlackBerry (in versione beta limitata), Windows Mobile, Windows Phone, S60 (Symbian), webOS, Squeezebox, Boxee, Sonos, Playstation 3, PlayStation 4, PlayStation 5, Xbox One, WD TV e MeeGo.<br><br>
-La musica può essere visualizzata per artista, album, etichetta, genere o playlist così come grazie a ricerche dirette. Sui dispositivi desktop un collegamento permette all'ascoltatore di acquistare materiale selezionato presso venditori di terze parti.<br></p>
+<p><img src="img/spotify.jpg" alt="spotify.jpg" /></p>
+<br>
+<h2 id="Cos'%C3%A8-Spotify">Cos'&#232; Spotify<a class="anchor-link" href="#Cos'%C3%A8-Spotify">&#182;</a></h2><blockquote>
+<p><strong>Spotify</strong> è un servizio musicale svedese che offre lo <em>streaming on demand</em> di una selezione di brani di varie case discografiche ed etichette indipendenti, incluse <em>Sony, EMI, Warner Music Group e Universal</em>. Lanciato nell'ottobre 2008 dalla startup svedese Spotify AB, il servizio ha oltre 75 milioni di utenti al 10 giugno 2015. Il 14 dicembre 2016 vengono raggiunti i 40 milioni di utenti paganti, acquisendo in soli sei mesi 10 milioni di abbonati. Ha registrato più di 140 milioni di utenti attivi mensili nel giugno 2017 e più di 70 milioni di abbonati nel gennaio 2018.<br><br></p>
 </blockquote>
-<p>Da <a>https://it.wikipedia.org/wiki/Spotify</a></p>
+<p><em>Spotify</em> è disponibile in versione gratuita e a pagamento, nella maggior parte dei Paesi dell'Europa, nella quasi totalità delle Americhe, in Australia, in Nuova Zelanda e in alcuni Paesi dell'Asia. Il servizio è fruibile attraverso Microsoft Windows, macOS, GNU/Linux (solo per Debian e Ubuntu e senza supporto tecnico), Google Chrome OS, Telia Digital-tv e i dispositivi mobili equipaggiati con iOS (iPod/iPhone/iPad), Android, BlackBerry (in versione beta limitata), Windows Mobile, Windows Phone, S60 (Symbian), webOS, Squeezebox, Boxee, Sonos, Playstation 3, PlayStation 4, PlayStation 5, Xbox One, WD TV e MeeGo.<br><br>
+La musica può essere visualizzata per artista, album, etichetta, genere o playlist così come grazie a ricerche dirette. Sui dispositivi desktop un collegamento permette all'ascoltatore di acquistare materiale selezionato presso venditori di terze parti.<br></p>
+<p>Da <a><a href="https://it.wikipedia.org/wiki/Spotify">https://it.wikipedia.org/wiki/Spotify</a></a></p>
 
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14610,14 +14629,14 @@ La musica può essere visualizzata per artista, album, etichetta, genere o playl
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="API-di-Spotify">API di Spotify<a class="anchor-link" href="#API-di-Spotify">&#182;</a></h2><p>Le API ufficiali fornite da Spotify permettono di ottenere informazioni sulle tracce per conoscere la loro valenza, numero di ascolti, numero di mi piace, e molto altro. Per casi d'uso più avanzati, è possibile ottenere dati di analisi approfonditi su tracce come: segmenti, tatums, bars, beats, pitches, e altro.<br>
 I clients dovranno autenticarsi attraverso OAuth2.</p>
-<p><img src="img/spotify_doc.jpg" alt="Spotify doc"></p>
-<p>Link alla documentazione: <a>https://developer.spotify.com/documentation/</a></p>
+<p><img src="img/spotify_doc.jpg" alt="Spotify doc" /></p>
+<p>Link alla documentazione: <a><a href="https://developer.spotify.com/documentation/">https://developer.spotify.com/documentation/</a></a></p>
 
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14629,19 +14648,19 @@ I clients dovranno autenticarsi attraverso OAuth2.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="img/spotify_developer.JPG" alt="Spotify developer"></p>
+<p><img src="img/spotify_developer.JPG" alt="Spotify developer" /></p>
 
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14654,19 +14673,19 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="img/spotify_developer_2.JPG" alt="Spotify developer"></p>
+<p><img src="img/spotify_developer_2.JPG" alt="Spotify developer" /></p>
 
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14678,7 +14697,668 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Per interagire con le <strong>API REST</strong> fornite dalla piattaforma Spotify stessa, utilizzeremo la libreria <strong>requests</strong> di python.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Prima di poter richiedere qualsiasi dato, dovremmo ottenere un <strong>access token</strong> tramite l'apposita API <em><a href="https://accounts.spotify.com/api/token">https://accounts.spotify.com/api/token</a></em> impostando tra i parametri dell'header le credenziali ottenute nei passaggi precedenti di questo tutorial, come <strong>client_id</strong> e <strong>client_secret</strong></p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SPOTIFY_CLIENT_ID</span><span class="o">=</span><span class="s1">&#39;b48898f561ab4533b7396439e6610ff4&#39;</span>
+<span class="n">SPOTIFY_CLIENT_SECRET</span><span class="o">=</span><span class="s1">&#39;******************&#39;</span>
+<span class="n">REDIRECT_URI</span><span class="o">=</span><span class="s1">&#39;http://localhost:8080&#39;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># richiesta access token</span>
+<span class="n">auth_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;https://accounts.spotify.com/api/token&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;grant_type&#39;</span><span class="p">:</span> <span class="s1">&#39;client_credentials&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;client_id&#39;</span><span class="p">:</span> <span class="n">SPOTIFY_CLIENT_ID</span><span class="p">,</span>
+    <span class="s1">&#39;client_secret&#39;</span><span class="p">:</span> <span class="n">SPOTIFY_CLIENT_SECRET</span>
+<span class="p">})</span>
+
+<span class="c1"># risposta in JSON</span>
+<span class="n">auth_response_data</span> <span class="o">=</span> <span class="n">auth_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">auth_response_data</span><span class="p">)</span>
+
+<span class="c1"># access token</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{token}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">auth_response_data</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;access_token&#39;: &#39;BQB2MxhIk8vfeGw-oIlyUxfeU8zU3MNWD65adE5JCw42Vh5NH7cm7XjOhltNnLHzA6WzjiA6QyLVkW6K2Vo9mIUas2G8BKQs5GuSdOG7FUIjV_0NDl3Q&#39;, &#39;token_type&#39;: &#39;Bearer&#39;, &#39;expires_in&#39;: 3600}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Una volta ottenuto l'<strong>access token</strong> valido per 1 ora dalla richiesta, sarà possibile interagire con le varie API disponibili. <br>
+Ad esempio, tramite l'API <em><a href="https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V">https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V</a></em>, dove &quot;<em>6eUKZXaKkcviH0Ku9w2n3V</em>&quot; indica l'identificativo univoco di <strong>Ed Sheeran</strong> sulla piattaforma di Spotify, ottenendo così le sue informazioni</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">artist_id</span> <span class="o">=</span> <span class="s1">&#39;6eUKZXaKkcviH0Ku9w2n3V&#39;</span>
+
+<span class="c1"># richiesta informazioni dell&#39;artista</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;https://api.spotify.com/v1/artists/&#39;</span> <span class="o">+</span> <span class="n">artist_id</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># risposta</span>
+<span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;external_urls&#39;: {&#39;spotify&#39;: &#39;https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V&#39;},
+ &#39;followers&#39;: {&#39;href&#39;: None, &#39;total&#39;: 111754254},
+ &#39;genres&#39;: [&#39;pop&#39;, &#39;uk pop&#39;],
+ &#39;href&#39;: &#39;https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V&#39;,
+ &#39;id&#39;: &#39;6eUKZXaKkcviH0Ku9w2n3V&#39;,
+ &#39;images&#39;: [{&#39;height&#39;: 640,
+   &#39;url&#39;: &#39;https://i.scdn.co/image/ab6761610000e5eb9e690225ad4445530612ccc9&#39;,
+   &#39;width&#39;: 640},
+  {&#39;height&#39;: 320,
+   &#39;url&#39;: &#39;https://i.scdn.co/image/ab676161000051749e690225ad4445530612ccc9&#39;,
+   &#39;width&#39;: 320},
+  {&#39;height&#39;: 160,
+   &#39;url&#39;: &#39;https://i.scdn.co/image/ab6761610000f1789e690225ad4445530612ccc9&#39;,
+   &#39;width&#39;: 160}],
+ &#39;name&#39;: &#39;Ed Sheeran&#39;,
+ &#39;popularity&#39;: 91,
+ &#39;type&#39;: &#39;artist&#39;,
+ &#39;uri&#39;: &#39;spotify:artist:6eUKZXaKkcviH0Ku9w2n3V&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Un'altra API &quot;<em><a href="https://api.spotify.com/v1/tracks/0tgVpDi06FyKpA1z0VMD4v">https://api.spotify.com/v1/tracks/0tgVpDi06FyKpA1z0VMD4v</a></em>&quot; permette di ottenere le informazioni relative alla track audio <strong>Perfect</strong> con codice univoco &quot;<em>0tgVpDi06FyKpA1z0VMD4v</em>&quot;</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">track_id</span> <span class="o">=</span> <span class="s1">&#39;0tgVpDi06FyKpA1z0VMD4v&#39;</span>
+
+<span class="c1"># richiesta delle informazioni della traccia audio</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;https://api.spotify.com/v1/tracks/&#39;</span> <span class="o">+</span> <span class="n">track_id</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+<span class="p">)</span>
+
+<span class="c1"># risposta</span>
+<span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;album&#39;: {&#39;album_group&#39;: &#39;album&#39;,
+  &#39;album_type&#39;: &#39;album&#39;,
+  &#39;artists&#39;: [{&#39;external_urls&#39;: {&#39;spotify&#39;: &#39;https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V&#39;},
+    &#39;href&#39;: &#39;https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V&#39;,
+    &#39;id&#39;: &#39;6eUKZXaKkcviH0Ku9w2n3V&#39;,
+    &#39;name&#39;: &#39;Ed Sheeran&#39;,
+    &#39;type&#39;: &#39;artist&#39;,
+    &#39;uri&#39;: &#39;spotify:artist:6eUKZXaKkcviH0Ku9w2n3V&#39;}],
+  &#39;available_markets&#39;: [&#39;AD&#39;,
+   &#39;AE&#39;,
+   &#39;AG&#39;,
+   &#39;AL&#39;,
+   &#39;AM&#39;,
+   &#39;AO&#39;,
+   &#39;AR&#39;,
+   &#39;AT&#39;,
+   &#39;AU&#39;,
+   &#39;AZ&#39;,
+   &#39;BA&#39;,
+   &#39;BB&#39;,
+   &#39;BD&#39;,
+   &#39;BE&#39;,
+   &#39;BF&#39;,
+   &#39;BG&#39;,
+   &#39;BH&#39;,
+   &#39;BI&#39;,
+   &#39;BJ&#39;,
+   &#39;BN&#39;,
+   &#39;BO&#39;,
+   &#39;BR&#39;,
+   &#39;BS&#39;,
+   &#39;BT&#39;,
+   &#39;BW&#39;,
+   &#39;BY&#39;,
+   &#39;BZ&#39;,
+   &#39;CA&#39;,
+   &#39;CD&#39;,
+   &#39;CG&#39;,
+   &#39;CH&#39;,
+   &#39;CI&#39;,
+   &#39;CL&#39;,
+   &#39;CM&#39;,
+   &#39;CO&#39;,
+   &#39;CR&#39;,
+   &#39;CV&#39;,
+   &#39;CW&#39;,
+   &#39;CY&#39;,
+   &#39;CZ&#39;,
+   &#39;DE&#39;,
+   &#39;DJ&#39;,
+   &#39;DK&#39;,
+   &#39;DM&#39;,
+   &#39;DO&#39;,
+   &#39;DZ&#39;,
+   &#39;EC&#39;,
+   &#39;EE&#39;,
+   &#39;EG&#39;,
+   &#39;ES&#39;,
+   &#39;ET&#39;,
+   &#39;FI&#39;,
+   &#39;FJ&#39;,
+   &#39;FM&#39;,
+   &#39;FR&#39;,
+   &#39;GA&#39;,
+   &#39;GB&#39;,
+   &#39;GD&#39;,
+   &#39;GE&#39;,
+   &#39;GH&#39;,
+   &#39;GM&#39;,
+   &#39;GN&#39;,
+   &#39;GQ&#39;,
+   &#39;GR&#39;,
+   &#39;GT&#39;,
+   &#39;GW&#39;,
+   &#39;GY&#39;,
+   &#39;HK&#39;,
+   &#39;HN&#39;,
+   &#39;HR&#39;,
+   &#39;HT&#39;,
+   &#39;HU&#39;,
+   &#39;ID&#39;,
+   &#39;IE&#39;,
+   &#39;IL&#39;,
+   &#39;IN&#39;,
+   &#39;IQ&#39;,
+   &#39;IS&#39;,
+   &#39;IT&#39;,
+   &#39;JM&#39;,
+   &#39;JO&#39;,
+   &#39;JP&#39;,
+   &#39;KE&#39;,
+   &#39;KG&#39;,
+   &#39;KH&#39;,
+   &#39;KI&#39;,
+   &#39;KM&#39;,
+   &#39;KN&#39;,
+   &#39;KR&#39;,
+   &#39;KW&#39;,
+   &#39;KZ&#39;,
+   &#39;LA&#39;,
+   &#39;LB&#39;,
+   &#39;LC&#39;,
+   &#39;LI&#39;,
+   &#39;LK&#39;,
+   &#39;LR&#39;,
+   &#39;LS&#39;,
+   &#39;LT&#39;,
+   &#39;LU&#39;,
+   &#39;LV&#39;,
+   &#39;LY&#39;,
+   &#39;MA&#39;,
+   &#39;MC&#39;,
+   &#39;MD&#39;,
+   &#39;ME&#39;,
+   &#39;MG&#39;,
+   &#39;MH&#39;,
+   &#39;MK&#39;,
+   &#39;ML&#39;,
+   &#39;MN&#39;,
+   &#39;MO&#39;,
+   &#39;MR&#39;,
+   &#39;MT&#39;,
+   &#39;MU&#39;,
+   &#39;MV&#39;,
+   &#39;MW&#39;,
+   &#39;MX&#39;,
+   &#39;MY&#39;,
+   &#39;MZ&#39;,
+   &#39;NA&#39;,
+   &#39;NE&#39;,
+   &#39;NG&#39;,
+   &#39;NI&#39;,
+   &#39;NL&#39;,
+   &#39;NO&#39;,
+   &#39;NP&#39;,
+   &#39;NR&#39;,
+   &#39;NZ&#39;,
+   &#39;OM&#39;,
+   &#39;PA&#39;,
+   &#39;PE&#39;,
+   &#39;PG&#39;,
+   &#39;PH&#39;,
+   &#39;PK&#39;,
+   &#39;PL&#39;,
+   &#39;PS&#39;,
+   &#39;PT&#39;,
+   &#39;PW&#39;,
+   &#39;PY&#39;,
+   &#39;QA&#39;,
+   &#39;RO&#39;,
+   &#39;RS&#39;,
+   &#39;RW&#39;,
+   &#39;SA&#39;,
+   &#39;SB&#39;,
+   &#39;SC&#39;,
+   &#39;SE&#39;,
+   &#39;SG&#39;,
+   &#39;SI&#39;,
+   &#39;SK&#39;,
+   &#39;SL&#39;,
+   &#39;SM&#39;,
+   &#39;SN&#39;,
+   &#39;SR&#39;,
+   &#39;ST&#39;,
+   &#39;SV&#39;,
+   &#39;SZ&#39;,
+   &#39;TD&#39;,
+   &#39;TG&#39;,
+   &#39;TH&#39;,
+   &#39;TJ&#39;,
+   &#39;TL&#39;,
+   &#39;TN&#39;,
+   &#39;TO&#39;,
+   &#39;TR&#39;,
+   &#39;TT&#39;,
+   &#39;TV&#39;,
+   &#39;TW&#39;,
+   &#39;TZ&#39;,
+   &#39;UA&#39;,
+   &#39;UG&#39;,
+   &#39;US&#39;,
+   &#39;UY&#39;,
+   &#39;UZ&#39;,
+   &#39;VC&#39;,
+   &#39;VE&#39;,
+   &#39;VN&#39;,
+   &#39;VU&#39;,
+   &#39;WS&#39;,
+   &#39;XK&#39;,
+   &#39;ZA&#39;,
+   &#39;ZM&#39;,
+   &#39;ZW&#39;],
+  &#39;external_urls&#39;: {&#39;spotify&#39;: &#39;https://open.spotify.com/album/3T4tUhGYeRNVUGevb0wThu&#39;},
+  &#39;href&#39;: &#39;https://api.spotify.com/v1/albums/3T4tUhGYeRNVUGevb0wThu&#39;,
+  &#39;id&#39;: &#39;3T4tUhGYeRNVUGevb0wThu&#39;,
+  &#39;images&#39;: [{&#39;height&#39;: 640,
+    &#39;url&#39;: &#39;https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96&#39;,
+    &#39;width&#39;: 640},
+   {&#39;height&#39;: 300,
+    &#39;url&#39;: &#39;https://i.scdn.co/image/ab67616d00001e02ba5db46f4b838ef6027e6f96&#39;,
+    &#39;width&#39;: 300},
+   {&#39;height&#39;: 64,
+    &#39;url&#39;: &#39;https://i.scdn.co/image/ab67616d00004851ba5db46f4b838ef6027e6f96&#39;,
+    &#39;width&#39;: 64}],
+  &#39;name&#39;: &#39;÷ (Deluxe)&#39;,
+  &#39;release_date&#39;: &#39;2017-03-03&#39;,
+  &#39;release_date_precision&#39;: &#39;day&#39;,
+  &#39;total_tracks&#39;: 16,
+  &#39;type&#39;: &#39;album&#39;,
+  &#39;uri&#39;: &#39;spotify:album:3T4tUhGYeRNVUGevb0wThu&#39;},
+ &#39;artists&#39;: [{&#39;external_urls&#39;: {&#39;spotify&#39;: &#39;https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V&#39;},
+   &#39;href&#39;: &#39;https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V&#39;,
+   &#39;id&#39;: &#39;6eUKZXaKkcviH0Ku9w2n3V&#39;,
+   &#39;name&#39;: &#39;Ed Sheeran&#39;,
+   &#39;type&#39;: &#39;artist&#39;,
+   &#39;uri&#39;: &#39;spotify:artist:6eUKZXaKkcviH0Ku9w2n3V&#39;}],
+ &#39;available_markets&#39;: [&#39;AR&#39;,
+  &#39;AU&#39;,
+  &#39;AT&#39;,
+  &#39;BE&#39;,
+  &#39;BO&#39;,
+  &#39;BR&#39;,
+  &#39;BG&#39;,
+  &#39;CA&#39;,
+  &#39;CL&#39;,
+  &#39;CO&#39;,
+  &#39;CR&#39;,
+  &#39;CY&#39;,
+  &#39;CZ&#39;,
+  &#39;DK&#39;,
+  &#39;DO&#39;,
+  &#39;DE&#39;,
+  &#39;EC&#39;,
+  &#39;EE&#39;,
+  &#39;SV&#39;,
+  &#39;FI&#39;,
+  &#39;FR&#39;,
+  &#39;GR&#39;,
+  &#39;GT&#39;,
+  &#39;HN&#39;,
+  &#39;HK&#39;,
+  &#39;HU&#39;,
+  &#39;IS&#39;,
+  &#39;IE&#39;,
+  &#39;IT&#39;,
+  &#39;LV&#39;,
+  &#39;LT&#39;,
+  &#39;LU&#39;,
+  &#39;MY&#39;,
+  &#39;MT&#39;,
+  &#39;MX&#39;,
+  &#39;NL&#39;,
+  &#39;NZ&#39;,
+  &#39;NI&#39;,
+  &#39;NO&#39;,
+  &#39;PA&#39;,
+  &#39;PY&#39;,
+  &#39;PE&#39;,
+  &#39;PH&#39;,
+  &#39;PL&#39;,
+  &#39;PT&#39;,
+  &#39;SG&#39;,
+  &#39;SK&#39;,
+  &#39;ES&#39;,
+  &#39;SE&#39;,
+  &#39;CH&#39;,
+  &#39;TW&#39;,
+  &#39;TR&#39;,
+  &#39;UY&#39;,
+  &#39;US&#39;,
+  &#39;GB&#39;,
+  &#39;AD&#39;,
+  &#39;LI&#39;,
+  &#39;MC&#39;,
+  &#39;ID&#39;,
+  &#39;JP&#39;,
+  &#39;TH&#39;,
+  &#39;VN&#39;,
+  &#39;RO&#39;,
+  &#39;IL&#39;,
+  &#39;ZA&#39;,
+  &#39;SA&#39;,
+  &#39;AE&#39;,
+  &#39;BH&#39;,
+  &#39;QA&#39;,
+  &#39;OM&#39;,
+  &#39;KW&#39;,
+  &#39;EG&#39;,
+  &#39;MA&#39;,
+  &#39;DZ&#39;,
+  &#39;TN&#39;,
+  &#39;LB&#39;,
+  &#39;JO&#39;,
+  &#39;PS&#39;,
+  &#39;IN&#39;,
+  &#39;BY&#39;,
+  &#39;KZ&#39;,
+  &#39;MD&#39;,
+  &#39;UA&#39;,
+  &#39;AL&#39;,
+  &#39;BA&#39;,
+  &#39;HR&#39;,
+  &#39;ME&#39;,
+  &#39;MK&#39;,
+  &#39;RS&#39;,
+  &#39;SI&#39;,
+  &#39;KR&#39;,
+  &#39;BD&#39;,
+  &#39;PK&#39;,
+  &#39;LK&#39;,
+  &#39;GH&#39;,
+  &#39;KE&#39;,
+  &#39;NG&#39;,
+  &#39;TZ&#39;,
+  &#39;UG&#39;,
+  &#39;AG&#39;,
+  &#39;AM&#39;,
+  &#39;BS&#39;,
+  &#39;BB&#39;,
+  &#39;BZ&#39;,
+  &#39;BT&#39;,
+  &#39;BW&#39;,
+  &#39;BF&#39;,
+  &#39;CV&#39;,
+  &#39;CW&#39;,
+  &#39;DM&#39;,
+  &#39;FJ&#39;,
+  &#39;GM&#39;,
+  &#39;GE&#39;,
+  &#39;GD&#39;,
+  &#39;GW&#39;,
+  &#39;GY&#39;,
+  &#39;HT&#39;,
+  &#39;JM&#39;,
+  &#39;KI&#39;,
+  &#39;LS&#39;,
+  &#39;LR&#39;,
+  &#39;MW&#39;,
+  &#39;MV&#39;,
+  &#39;ML&#39;,
+  &#39;MH&#39;,
+  &#39;FM&#39;,
+  &#39;NA&#39;,
+  &#39;NR&#39;,
+  &#39;NE&#39;,
+  &#39;PW&#39;,
+  &#39;PG&#39;,
+  &#39;WS&#39;,
+  &#39;SM&#39;,
+  &#39;ST&#39;,
+  &#39;SN&#39;,
+  &#39;SC&#39;,
+  &#39;SL&#39;,
+  &#39;SB&#39;,
+  &#39;KN&#39;,
+  &#39;LC&#39;,
+  &#39;VC&#39;,
+  &#39;SR&#39;,
+  &#39;TL&#39;,
+  &#39;TO&#39;,
+  &#39;TT&#39;,
+  &#39;TV&#39;,
+  &#39;VU&#39;,
+  &#39;AZ&#39;,
+  &#39;BN&#39;,
+  &#39;BI&#39;,
+  &#39;KH&#39;,
+  &#39;CM&#39;,
+  &#39;TD&#39;,
+  &#39;KM&#39;,
+  &#39;GQ&#39;,
+  &#39;SZ&#39;,
+  &#39;GA&#39;,
+  &#39;GN&#39;,
+  &#39;KG&#39;,
+  &#39;LA&#39;,
+  &#39;MO&#39;,
+  &#39;MR&#39;,
+  &#39;MN&#39;,
+  &#39;NP&#39;,
+  &#39;RW&#39;,
+  &#39;TG&#39;,
+  &#39;UZ&#39;,
+  &#39;ZW&#39;,
+  &#39;BJ&#39;,
+  &#39;MG&#39;,
+  &#39;MU&#39;,
+  &#39;MZ&#39;,
+  &#39;AO&#39;,
+  &#39;CI&#39;,
+  &#39;DJ&#39;,
+  &#39;ZM&#39;,
+  &#39;CD&#39;,
+  &#39;CG&#39;,
+  &#39;IQ&#39;,
+  &#39;LY&#39;,
+  &#39;TJ&#39;,
+  &#39;VE&#39;,
+  &#39;ET&#39;,
+  &#39;XK&#39;],
+ &#39;disc_number&#39;: 1,
+ &#39;duration_ms&#39;: 263400,
+ &#39;explicit&#39;: False,
+ &#39;external_ids&#39;: {&#39;isrc&#39;: &#39;GBAHS1700024&#39;},
+ &#39;external_urls&#39;: {&#39;spotify&#39;: &#39;https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v&#39;},
+ &#39;href&#39;: &#39;https://api.spotify.com/v1/tracks/0tgVpDi06FyKpA1z0VMD4v&#39;,
+ &#39;id&#39;: &#39;0tgVpDi06FyKpA1z0VMD4v&#39;,
+ &#39;is_local&#39;: False,
+ &#39;name&#39;: &#39;Perfect&#39;,
+ &#39;popularity&#39;: 90,
+ &#39;preview_url&#39;: &#39;https://p.scdn.co/mp3-preview/4e30857a3c7da3f8891483643e310bb233afadd2?cid=b48898f561ab4533b7396439e6610ff4&#39;,
+ &#39;track_number&#39;: 5,
+ &#39;type&#39;: &#39;track&#39;,
+ &#39;uri&#39;: &#39;spotify:track:0tgVpDi06FyKpA1z0VMD4v&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14690,18 +15370,29 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="SPOTIPY-Quick-Start">SPOTIPY Quick Start<a class="anchor-link" href="#SPOTIPY-Quick-Start">&#182;</a></h3><p>Come spiegato nella guida <strong><a href="https://spotipy.readthedocs.io/en/2.22.0/#installation">Quick Start di SPOTIPY</a></strong> creiamo un'instanza per poter contattare i vari metodi esposti dalla libreria, tramite i seguenti comandi:</p>
+<h3 id="SPOTIPY-Quick-Start">SPOTIPY Quick Start<a class="anchor-link" href="#SPOTIPY-Quick-Start">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Iniziamo il tutorial installando le librerie python richieste, tramite il seguente comando.</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14718,53 +15409,23 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Inseriamo dunque le nostre credenziali fornite nei punti precedenti (durante la fase di creazione della nostra nuova app)</p>
+<p>Come spiegato nella guida <strong><a href="https://spotipy.readthedocs.io/en/2.22.0/#installation">Quick Start di SPOTIPY</a></strong> creiamo un'instanza per poter contattare i vari metodi esposti dalla libreria, tramite i seguenti comandi:</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SPOTIPY_CLIENT_ID</span><span class="o">=</span><span class="s1">&#39;b48898f561ab4533b7396439e6610ff4&#39;</span>
-<span class="n">SPOTIPY_CLIENT_SECRET</span><span class="o">=</span><span class="s1">&#39;2c5bfc5f50b74f899e7ae755f14df67d&#39;</span>
-<span class="n">REDIRECT_URI</span><span class="o">=</span><span class="s1">&#39;http://localhost:8080&#39;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Importiamo le librerie necessarie per interagire con spotipy</p>
-
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">spotipy</span>
@@ -14777,36 +15438,39 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Creiamo una nuova istanza - autenticata - così da poterla riutilizzare per richiamare i vari metodi della libreria</p>
+<p>Creiamo una nuova istanza - autenticata - così da poterla riutilizzare per richiamare i vari metodi della libreria <strong>spotipy</strong>.<br>
+Il parametro <strong>scope</strong> indica le autorizzazioni che verranno concesse solo per accedere alle informazioni pubblicamente disponibili, ovvero solo alle informazioni normalmente visibili nelle piattaforme web e mobile di Spotify.</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scope</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;user-top-read&#39;</span>
 <span class="p">]</span>
 
+<span class="c1"># riferimento all&#39;istanza SpotifyOAuth</span>
 <span class="n">auth_manager</span> <span class="o">=</span> <span class="n">SpotifyOAuth</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=</span><span class="n">SPOTIPY_CLIENT_ID</span><span class="p">,</span>
-    <span class="n">client_secret</span><span class="o">=</span><span class="n">SPOTIPY_CLIENT_SECRET</span><span class="p">,</span>
+    <span class="n">client_id</span><span class="o">=</span><span class="n">SPOTIFY_CLIENT_ID</span><span class="p">,</span>
+    <span class="n">client_secret</span><span class="o">=</span><span class="n">SPOTIFY_CLIENT_SECRET</span><span class="p">,</span>
     <span class="n">redirect_uri</span><span class="o">=</span><span class="n">REDIRECT_URI</span><span class="p">,</span>
     <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
 <span class="p">)</span>
 
+<span class="c1"># riferimento al client Spotify API</span>
 <span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth_manager</span><span class="o">=</span><span class="n">auth_manager</span><span class="p">)</span>
 </pre></div>
 
@@ -14816,7 +15480,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14827,15 +15491,16 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">current_user</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># recupero le informazioni dell&#39;utente correntemente autorizzato con l&#39;istanza SpotifyOAuth</span>
+<span class="n">current_user</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">current_user</span> <span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Wellcome,&#39;</span><span class="p">,</span> <span class="n">current_user</span><span class="p">[</span><span class="s1">&#39;display_name&#39;</span><span class="p">])</span>
@@ -14852,9 +15517,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14870,7 +15533,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14882,7 +15545,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14893,7 +15556,7 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14905,25 +15568,26 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Prima di procedere però, importiamo la libreria <strong>pandas</strong> necessaria per la manipolazione dei dati.<br></p>
-<blockquote><p><strong>Pandas</strong> è una libreria di alto livello che mette a disposizione diversi strumenti e strutture dati per l'analisi dei dati. In particolare, Pandas è molto utile per caricare, manipolare e visualizzare i dati in maniera veloce e conveniente prima di passare all'analisi vera e propria.</p>
+<blockquote>
+<p><strong>Pandas</strong> è una libreria di alto livello che mette a disposizione diversi strumenti e strutture dati per l'analisi dei dati. In particolare, Pandas è molto utile per caricare, manipolare e visualizzare i dati in maniera veloce e conveniente prima di passare all'analisi vera e propria.</p>
 </blockquote>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
@@ -14935,21 +15599,22 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Definendo un dataframe, potremmo ispezionare alcune delle informazioni rilevanti delle varie tracks..<br></p>
-<blockquote><p>Un <strong>DataFrame</strong> è una tabella di dati in cui ogni riga rappresenta un elemento "sotto esame" della lista, e ogni colonna invece rappresenta una particolare informazione di quell'elemento.</p>
+<blockquote>
+<p>Un <strong>DataFrame</strong> è una tabella di dati in cui ogni riga rappresenta un elemento &quot;sotto esame&quot; della lista, e ogni colonna invece rappresenta una particolare informazione di quell'elemento.</p>
 </blockquote>
 
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14960,12 +15625,12 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="p">{</span>
@@ -14978,8 +15643,10 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
     <span class="s1">&#39;uri&#39;</span><span class="p">:</span> <span class="n">current_user</span><span class="p">[</span><span class="s1">&#39;uri&#39;</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">user_df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;current_user&#39;</span><span class="p">})</span>
+<span class="c1"># creo un dataframe con le informazioni dell&#39;utente</span>
+<span class="n">user_df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">user</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;current_user&#39;</span><span class="p">])</span>
 
+<span class="c1"># risposta</span>
 <span class="n">user_df</span>
 </pre></div>
 
@@ -14994,11 +15661,9 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
 
 
 
@@ -15034,10 +15699,10 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
     <tr>
       <th>current_user</th>
       <td>Francesco Petrosino</td>
-      <td>11</td>
+      <td>12</td>
       <td>https://api.spotify.com/v1/users/21ktslj6lkgx6...</td>
       <td>21ktslj6lkgx6wswmfwu5cwuq</td>
-      <td>{'height': None, 'url': 'https://platform-look...</td>
+      <td>[{'height': None, 'url': 'https://platform-loo...</td>
       <td>user</td>
       <td>spotify:user:21ktslj6lkgx6wswmfwu5cwuq</td>
     </tr>
@@ -15053,27 +15718,29 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Segue il codice per ottenere le tracks ascoltate di frequente dall'utente corrente</p>
+<p>Per ottenere le tracks ascoltate di frequente dall'utente corrente, andremo a richiamare l'apposito metodo <em>current_user_top_tracks()</em></p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tracks_take</span> <span class="o">=</span> <span class="mi">30</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># limite delle tracks da ricevere</span>
+<span class="n">tracks_take</span> <span class="o">=</span> <span class="mi">30</span>
 
+<span class="c1"># richiesta delle top tracks dell&#39;utente corrente</span>
 <span class="n">raw_result</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">current_user_top_tracks</span><span class="p">(</span><span class="n">time_range</span><span class="o">=</span><span class="s1">&#39;medium_term&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">tracks_take</span><span class="p">)</span>
 </pre></div>
 
@@ -15083,23 +15750,23 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Costruiamo adesso un dataframe a partire dal risultato visto in precedenza</p>
+<p>Costruiamo adesso un dataframe a partire dal risultato visto in precedenza, scremando la lista con le informazioni più utili e descrittive, come il <em>nome dell'artista</em>, <em>il titolo della traccia audio</em>, <em>la popolarità</em>, <em>il nome dell'album</em> e molto altro.</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -15139,11 +15806,9 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
 
 
 
@@ -15185,23 +15850,6 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
   <tbody>
     <tr>
       <th>0</th>
-      <td>7hxHWCCAIIxFLCzvDgnQHX</td>
-      <td>Lemonade (feat. Gunna, Don Toliver &amp; NAV)</td>
-      <td>Internet Money</td>
-      <td>spotify:artist:6MPCFvOQv5cIGfw3jODMF0</td>
-      <td>B4 The Storm</td>
-      <td>2020-08-28</td>
-      <td>17</td>
-      <td>spotify:album:2vGU0DOcfsDee0euvhl1iZ</td>
-      <td>1</td>
-      <td>195428</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/7hxHWCCAIIxF...</td>
-      <td>78</td>
-      <td>spotify:track:7hxHWCCAIIxFLCzvDgnQHX</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>0O6u0VJ46W86TxN9wgyqDj</td>
       <td>I Like You (A Happier Song) (with Doja Cat)</td>
       <td>Post Malone</td>
@@ -15214,28 +15862,79 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
       <td>192840</td>
       <td>True</td>
       <td>https://api.spotify.com/v1/tracks/0O6u0VJ46W86...</td>
-      <td>90</td>
+      <td>87</td>
       <td>spotify:track:0O6u0VJ46W86TxN9wgyqDj</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>76OOmMnaTR0ofp52ZhUSyT</td>
-      <td>Staring At The Bottle</td>
-      <td>Jerome</td>
-      <td>spotify:artist:4xcDVatLFh6qlcm41er3LV</td>
-      <td>Staring At The Bottle</td>
-      <td>2021-09-17</td>
+      <th>1</th>
+      <td>21jGcNKet2qwijlDFuPiPb</td>
+      <td>Circles</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Hollywood's Bleeding</td>
+      <td>2019-09-06</td>
+      <td>17</td>
+      <td>spotify:album:4g1ZRSobMefqF6nelkgibi</td>
       <td>1</td>
-      <td>spotify:album:4HWRzHxqJyXWdvN427p8VU</td>
-      <td>1</td>
-      <td>151368</td>
+      <td>215280</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/76OOmMnaTR0o...</td>
-      <td>64</td>
-      <td>spotify:track:76OOmMnaTR0ofp52ZhUSyT</td>
+      <td>https://api.spotify.com/v1/tracks/21jGcNKet2qw...</td>
+      <td>87</td>
+      <td>spotify:track:21jGcNKet2qwijlDFuPiPb</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0e7ipj03S05BNilyu5bRzt</td>
+      <td>rockstar (feat. 21 Savage)</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>beerbongs &amp; bentleys</td>
+      <td>2018-04-27</td>
+      <td>18</td>
+      <td>spotify:album:6trNtQUgC8cgbWcqoMYkOR</td>
+      <td>1</td>
+      <td>218146</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/0e7ipj03S05B...</td>
+      <td>85</td>
+      <td>spotify:track:0e7ipj03S05BNilyu5bRzt</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>1nltpRhEiXikwDlVn4UADk</td>
+      <td>One Right Now (with The Weeknd)</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Twelve Carat Toothache</td>
+      <td>2022-06-03</td>
+      <td>14</td>
+      <td>spotify:album:3HHNR44YbP7XogMVwzbodx</td>
+      <td>1</td>
+      <td>192721</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/1nltpRhEiXik...</td>
+      <td>76</td>
+      <td>spotify:track:1nltpRhEiXikwDlVn4UADk</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3a1lNhkSLSkpJE4MSHpDu9</td>
+      <td>Congratulations</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Stoney (Deluxe)</td>
+      <td>2016-12-09</td>
+      <td>18</td>
+      <td>spotify:album:5s0rmjP8XOPhP6HhqOhuyC</td>
+      <td>1</td>
+      <td>220293</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/3a1lNhkSLSkp...</td>
+      <td>83</td>
+      <td>spotify:track:3a1lNhkSLSkpJE4MSHpDu9</td>
+    </tr>
+    <tr>
+      <th>5</th>
       <td>4zN21mbAuaD0WqtmaTZZeP</td>
       <td>Ferrari</td>
       <td>James Hype</td>
@@ -15248,113 +15947,215 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
       <td>186661</td>
       <td>False</td>
       <td>https://api.spotify.com/v1/tracks/4zN21mbAuaD0...</td>
-      <td>88</td>
+      <td>85</td>
       <td>spotify:track:4zN21mbAuaD0WqtmaTZZeP</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>2tIyoiGw4F82z2C8zb7eZB</td>
-      <td>TU MI HAI CAPITO (feat. Sfera Ebbasta)</td>
-      <td>Madame</td>
-      <td>spotify:artist:1vgQksyJ0IVz8y9XerEOy3</td>
-      <td>MADAME</td>
-      <td>2021-06-03</td>
-      <td>18</td>
-      <td>spotify:album:7oF6ed3aSHU6aDD4MD3LIr</td>
-      <td>1</td>
-      <td>211498</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/2tIyoiGw4F82...</td>
-      <td>62</td>
-      <td>spotify:track:2tIyoiGw4F82z2C8zb7eZB</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>3rmo8F54jFF8OgYsqTxm5d</td>
-      <td>Bad Habits</td>
-      <td>Ed Sheeran</td>
-      <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
-      <td>=</td>
-      <td>2021-10-29</td>
-      <td>14</td>
-      <td>spotify:album:32iAEBstCjauDhyKpGjTuq</td>
-      <td>1</td>
-      <td>230746</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/3rmo8F54jFF8...</td>
-      <td>88</td>
-      <td>spotify:track:3rmo8F54jFF8OgYsqTxm5d</td>
-    </tr>
-    <tr>
       <th>6</th>
-      <td>4iJyoBOLtHqaGxP12qzhQI</td>
-      <td>Peaches (feat. Daniel Caesar &amp; Giveon)</td>
-      <td>Justin Bieber</td>
-      <td>spotify:artist:1uNFoZAHBGtllmzznpCI3s</td>
-      <td>Justice</td>
-      <td>2021-03-19</td>
-      <td>16</td>
-      <td>spotify:album:5dGWwsZ9iB2Xc3UKR0gif2</td>
+      <td>0RiRZpuVRbi7oqRdSMwhQY</td>
+      <td>Sunflower - Spider-Man: Into the Spider-Verse</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Hollywood's Bleeding</td>
+      <td>2019-09-06</td>
+      <td>17</td>
+      <td>spotify:album:4g1ZRSobMefqF6nelkgibi</td>
       <td>1</td>
-      <td>198081</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/4iJyoBOLtHqa...</td>
-      <td>85</td>
-      <td>spotify:track:4iJyoBOLtHqaGxP12qzhQI</td>
+      <td>157560</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/0RiRZpuVRbi7...</td>
+      <td>83</td>
+      <td>spotify:track:0RiRZpuVRbi7oqRdSMwhQY</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>50nfwKoDiSYg8zOCREWAm5</td>
-      <td>Shivers</td>
+      <td>0tgVpDi06FyKpA1z0VMD4v</td>
+      <td>Perfect</td>
       <td>Ed Sheeran</td>
       <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
-      <td>=</td>
-      <td>2021-10-29</td>
-      <td>14</td>
-      <td>spotify:album:32iAEBstCjauDhyKpGjTuq</td>
+      <td>÷ (Deluxe)</td>
+      <td>2017-03-03</td>
+      <td>16</td>
+      <td>spotify:album:3T4tUhGYeRNVUGevb0wThu</td>
       <td>1</td>
-      <td>207853</td>
+      <td>263400</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/50nfwKoDiSYg...</td>
-      <td>88</td>
-      <td>spotify:track:50nfwKoDiSYg8zOCREWAm5</td>
+      <td>https://api.spotify.com/v1/tracks/0tgVpDi06FyK...</td>
+      <td>90</td>
+      <td>spotify:track:0tgVpDi06FyKpA1z0VMD4v</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>6yaNNYWPjkWHbh1jADEyJO</td>
-      <td>KUMITE</td>
-      <td>Salmo</td>
-      <td>spotify:artist:3hBQ4zniNdQf1cqqo6hzuW</td>
-      <td>FLOP</td>
-      <td>2021-10-01</td>
+      <td>0t3ZvGKlmYmVsDzBJAXK8C</td>
+      <td>Goodbyes (feat. Young Thug)</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Hollywood's Bleeding</td>
+      <td>2019-09-06</td>
       <td>17</td>
-      <td>spotify:album:7DvK67C21i6go7olhjvLgT</td>
+      <td>spotify:album:4g1ZRSobMefqF6nelkgibi</td>
       <td>1</td>
-      <td>170018</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/6yaNNYWPjkWH...</td>
-      <td>67</td>
-      <td>spotify:track:6yaNNYWPjkWHbh1jADEyJO</td>
+      <td>174853</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/0t3ZvGKlmYmV...</td>
+      <td>80</td>
+      <td>spotify:track:0t3ZvGKlmYmVsDzBJAXK8C</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>6z7tGTD6yvyloEm6K2H8EX</td>
-      <td>LUNA PIENA (con IRAMA)</td>
-      <td>Rkomi</td>
-      <td>spotify:artist:056KMTw6IztdQjBmFfVyO3</td>
-      <td>TAXI DRIVER</td>
-      <td>2021-11-30</td>
-      <td>15</td>
-      <td>spotify:album:4D04TN7Kw7Bq98kfDjUmgh</td>
+      <td>1jP8Nvxt2umNxMKQwf0Jpa</td>
+      <td>Levels</td>
+      <td>Angemi</td>
+      <td>spotify:artist:3q5DAsSH8efMqNxjxbdpGx</td>
+      <td>Levels</td>
+      <td>2022-04-29</td>
       <td>1</td>
-      <td>166983</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/6z7tGTD6yvyl...</td>
-      <td>67</td>
-      <td>spotify:track:6z7tGTD6yvyloEm6K2H8EX</td>
+      <td>spotify:album:08iZBVp03FkrNY9n9aOeic</td>
+      <td>1</td>
+      <td>159383</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/1jP8Nvxt2umN...</td>
+      <td>19</td>
+      <td>spotify:track:1jP8Nvxt2umNxMKQwf0Jpa</td>
     </tr>
     <tr>
       <th>10</th>
+      <td>2CwHctWzU9Woi5C5ZC5m38</td>
+      <td>Inside Out</td>
+      <td>Azteck</td>
+      <td>spotify:artist:13NpuESz6tlK819yBs0PuS</td>
+      <td>Inside Out</td>
+      <td>2022-01-14</td>
+      <td>1</td>
+      <td>spotify:album:31uJRIZULUZVh9xEz1bgBH</td>
+      <td>1</td>
+      <td>160047</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/2CwHctWzU9Wo...</td>
+      <td>46</td>
+      <td>spotify:track:2CwHctWzU9Woi5C5ZC5m38</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>3KkXRkHbMCARz0aVfEt68P</td>
+      <td>Sunflower - Spider-Man: Into the Spider-Verse</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Spider-Man: Into the Spider-Verse (Soundtrack ...</td>
+      <td>2018-12-14</td>
+      <td>13</td>
+      <td>spotify:album:35s58BRTGAEWztPo9WqCIs</td>
+      <td>1</td>
+      <td>158040</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/3KkXRkHbMCAR...</td>
+      <td>83</td>
+      <td>spotify:track:3KkXRkHbMCARz0aVfEt68P</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>4xkOaSrkexMciUUogZKVTS</td>
+      <td>Till I Collapse</td>
+      <td>Eminem</td>
+      <td>spotify:artist:7dGJo4pcD2V6oG8kP0tJRR</td>
+      <td>The Eminem Show</td>
+      <td>2002-05-26</td>
+      <td>20</td>
+      <td>spotify:album:2cWBwpqMsDJC1ZUwz813lo</td>
+      <td>1</td>
+      <td>297786</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/4xkOaSrkexMc...</td>
+      <td>86</td>
+      <td>spotify:track:4xkOaSrkexMciUUogZKVTS</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>5w40ZYhbBMAlHYNDaVJIUu</td>
+      <td>Chemical</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Chemical</td>
+      <td>2023-04-14</td>
+      <td>1</td>
+      <td>spotify:album:7qcSUc5Af63mhfTF60KTEA</td>
+      <td>1</td>
+      <td>184013</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/5w40ZYhbBMAl...</td>
+      <td>89</td>
+      <td>spotify:track:5w40ZYhbBMAlHYNDaVJIUu</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>75ZvA4QfFiZvzhj2xkaWAh</td>
+      <td>I Fall Apart</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>Stoney (Deluxe)</td>
+      <td>2016-12-09</td>
+      <td>18</td>
+      <td>spotify:album:5s0rmjP8XOPhP6HhqOhuyC</td>
+      <td>1</td>
+      <td>223346</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/75ZvA4QfFiZv...</td>
+      <td>81</td>
+      <td>spotify:track:75ZvA4QfFiZvzhj2xkaWAh</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>76OOmMnaTR0ofp52ZhUSyT</td>
+      <td>Staring At The Bottle</td>
+      <td>Jerome</td>
+      <td>spotify:artist:4xcDVatLFh6qlcm41er3LV</td>
+      <td>Staring At The Bottle</td>
+      <td>2021-09-17</td>
+      <td>1</td>
+      <td>spotify:album:4HWRzHxqJyXWdvN427p8VU</td>
+      <td>1</td>
+      <td>151368</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/76OOmMnaTR0o...</td>
+      <td>60</td>
+      <td>spotify:track:76OOmMnaTR0ofp52ZhUSyT</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>7Ddk8FhoYKdsVoX9AOCPMm</td>
+      <td>STAYING ALIVE (feat. Drake &amp; Lil Baby)</td>
+      <td>DJ Khaled</td>
+      <td>spotify:artist:0QHgL1lAIqAw0HtD7YldmP</td>
+      <td>GOD DID</td>
+      <td>2022-08-26</td>
+      <td>18</td>
+      <td>spotify:album:6NuGZnOc88LcZpEkJIbO50</td>
+      <td>1</td>
+      <td>178176</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/7Ddk8FhoYKds...</td>
+      <td>71</td>
+      <td>spotify:track:7Ddk8FhoYKdsVoX9AOCPMm</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>7dt6x5M1jzdTEt8oCbisTK</td>
+      <td>Better Now</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>beerbongs &amp; bentleys</td>
+      <td>2018-04-27</td>
+      <td>18</td>
+      <td>spotify:album:6trNtQUgC8cgbWcqoMYkOR</td>
+      <td>1</td>
+      <td>231266</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/7dt6x5M1jzdT...</td>
+      <td>82</td>
+      <td>spotify:track:7dt6x5M1jzdTEt8oCbisTK</td>
+    </tr>
+    <tr>
+      <th>18</th>
       <td>7xQAfvXzm3AkraOtGPWIZg</td>
       <td>Wow.</td>
       <td>Post Malone</td>
@@ -15367,331 +16168,195 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
       <td>149546</td>
       <td>True</td>
       <td>https://api.spotify.com/v1/tracks/7xQAfvXzm3Ak...</td>
-      <td>82</td>
+      <td>83</td>
       <td>spotify:track:7xQAfvXzm3AkraOtGPWIZg</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1P6TlFb8EVH2nCX3luVpZW</td>
-      <td>Scooby Doo</td>
-      <td>Pinguini Tattici Nucleari</td>
-      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
-      <td>AHIA!</td>
-      <td>2020-12-04</td>
-      <td>7</td>
-      <td>spotify:album:0b2peKNz7zmn4xIxfPBUPa</td>
-      <td>1</td>
-      <td>179124</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/1P6TlFb8EVH2...</td>
-      <td>65</td>
-      <td>spotify:track:1P6TlFb8EVH2nCX3luVpZW</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>1x3Qb8np6S1UvpSLthwEJN</td>
-      <td>MI FAI IMPAZZIRE</td>
-      <td>BLANCO</td>
-      <td>spotify:artist:1MRiIeZbc0cRuxOafDUCtH</td>
-      <td>MI FAI IMPAZZIRE</td>
-      <td>2021-06-17</td>
-      <td>1</td>
-      <td>spotify:album:59L5yJfDpvDFynmhe2QbYS</td>
-      <td>1</td>
-      <td>220235</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/1x3Qb8np6S1U...</td>
-      <td>70</td>
-      <td>spotify:track:1x3Qb8np6S1UvpSLthwEJN</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>79VpbVJ1asRXWjkbvlxFED</td>
-      <td>Di Notte (feat. Sfera Ebbasta &amp; Carl Brave)</td>
-      <td>Ernia</td>
-      <td>spotify:artist:3fhMfkPPzksWuw0hEm4ldm</td>
-      <td>Gemelli (ascendente Milano)</td>
-      <td>2021-05-20</td>
-      <td>18</td>
-      <td>spotify:album:5bIm3XT2nJAdPvTLsBlk8g</td>
-      <td>1</td>
-      <td>224175</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/79VpbVJ1asRX...</td>
-      <td>56</td>
-      <td>spotify:track:79VpbVJ1asRXWjkbvlxFED</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0hkY6Je3FYVPCCLZNtPKhH</td>
-      <td>Novità (feat. Rkomi, Ernia &amp; Tedua)</td>
-      <td>Night Skinny</td>
-      <td>spotify:artist:2E6AK3UPEGCvjnzuygCh2h</td>
-      <td>Mattoni</td>
-      <td>2019-09-12</td>
-      <td>16</td>
-      <td>spotify:album:1l1cFQQfIbsDDbPavkCosf</td>
-      <td>1</td>
-      <td>184807</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/0hkY6Je3FYVP...</td>
-      <td>57</td>
-      <td>spotify:track:0hkY6Je3FYVPCCLZNtPKhH</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>7IBGw13AbUorsu133u6Q0Z</td>
-      <td>Vieni A Ballare In Puglia</td>
-      <td>Caparezza</td>
-      <td>spotify:artist:4l0PmbNvFq3m5JaUuAPbcB</td>
-      <td>Le Dimensioni Del Mio Caos</td>
-      <td>2008-01-01</td>
-      <td>14</td>
-      <td>spotify:album:5OZ8PKJMSSWmmYz2YsHBMB</td>
-      <td>1</td>
-      <td>240533</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/7IBGw13AbUor...</td>
-      <td>56</td>
-      <td>spotify:track:7IBGw13AbUorsu133u6Q0Z</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>63WuQOXohQIxOxIFA2K7bR</td>
-      <td>SUPERMODEL</td>
-      <td>Måneskin</td>
-      <td>spotify:artist:0lAWpj5szCSwM4rUMHYmrr</td>
-      <td>SUPERMODEL</td>
-      <td>2022-05-13</td>
-      <td>1</td>
-      <td>spotify:album:5jhbLeXH1a3SRSOg84GSUn</td>
-      <td>1</td>
-      <td>148064</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/63WuQOXohQIx...</td>
-      <td>81</td>
-      <td>spotify:track:63WuQOXohQIxOxIFA2K7bR</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>7mxEWcW3A0jULs64ckyq9k</td>
-      <td>2step (feat. Ultimo)</td>
-      <td>Ed Sheeran</td>
-      <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
-      <td>2step (feat. Ultimo)</td>
-      <td>2022-05-06</td>
-      <td>2</td>
-      <td>spotify:album:3TDdlYSrE5WuOTiuyr9tTl</td>
-      <td>1</td>
-      <td>154160</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/7mxEWcW3A0jU...</td>
-      <td>55</td>
-      <td>spotify:track:7mxEWcW3A0jULs64ckyq9k</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>4qB5WfP7AzwPzU4OddDm4b</td>
-      <td>Chapeau (feat. Frah Quintale)</td>
-      <td>Carl Brave</td>
-      <td>spotify:artist:29nrwultxQ8jENVmXoyMqK</td>
-      <td>Notti Brave</td>
-      <td>2018-05-11</td>
-      <td>15</td>
-      <td>spotify:album:1BayCxyyUYlm3x0Ys1z4Fl</td>
-      <td>1</td>
-      <td>185840</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/4qB5WfP7AzwP...</td>
-      <td>54</td>
-      <td>spotify:track:4qB5WfP7AzwPzU4OddDm4b</td>
-    </tr>
-    <tr>
       <th>19</th>
-      <td>2hyvtl2bbuA8NdKeiI4Knx</td>
-      <td>Super Martina (feat. Gazzelle)</td>
-      <td>Lorenzo Fragola</td>
-      <td>spotify:artist:0tTS475qIqv3KXYZMXjsYy</td>
-      <td>Bengala</td>
-      <td>2018-04-27</td>
-      <td>10</td>
-      <td>spotify:album:2M4XsKijWoVsPultAM3F1e</td>
+      <td>61mWefnWQOLf90gepjOCb3</td>
+      <td>Duality</td>
+      <td>Slipknot</td>
+      <td>spotify:artist:05fG473iIaoy82BF1aGhL8</td>
+      <td>Vol. 3: The Subliminal Verses</td>
+      <td>2004</td>
+      <td>22</td>
+      <td>spotify:album:4ZDBQSIDIZRUBOG2OHcN3T</td>
       <td>1</td>
-      <td>178687</td>
+      <td>252613</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/2hyvtl2bbuA8...</td>
-      <td>46</td>
-      <td>spotify:track:2hyvtl2bbuA8NdKeiI4Knx</td>
+      <td>https://api.spotify.com/v1/tracks/61mWefnWQOLf...</td>
+      <td>81</td>
+      <td>spotify:track:61mWefnWQOLf90gepjOCb3</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>3c1hhyuDTsP3hqRztpg2S5</td>
-      <td>Paraocchi</td>
-      <td>BLANCO</td>
-      <td>spotify:artist:1MRiIeZbc0cRuxOafDUCtH</td>
-      <td>Paraocchi</td>
-      <td>2021-02-25</td>
+      <td>50nfwKoDiSYg8zOCREWAm5</td>
+      <td>Shivers</td>
+      <td>Ed Sheeran</td>
+      <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
+      <td>=</td>
+      <td>2021-10-29</td>
+      <td>14</td>
+      <td>spotify:album:32iAEBstCjauDhyKpGjTuq</td>
       <td>1</td>
-      <td>spotify:album:2JFiCRthCdXKwqZBbVulT7</td>
-      <td>1</td>
-      <td>156083</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/3c1hhyuDTsP3...</td>
-      <td>56</td>
-      <td>spotify:track:3c1hhyuDTsP3hqRztpg2S5</td>
+      <td>207853</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/50nfwKoDiSYg...</td>
+      <td>87</td>
+      <td>spotify:track:50nfwKoDiSYg8zOCREWAm5</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>1VNARx6Sm6ZYAsDMCGiU1B</td>
-      <td>LUNEDI'</td>
-      <td>Salmo</td>
-      <td>spotify:artist:3hBQ4zniNdQf1cqqo6hzuW</td>
-      <td>Playlist</td>
-      <td>2018-11-09</td>
-      <td>13</td>
-      <td>spotify:album:5F6r4JU7TdqI8YOWzj6Fyn</td>
+      <td>3rmo8F54jFF8OgYsqTxm5d</td>
+      <td>Bad Habits</td>
+      <td>Ed Sheeran</td>
+      <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
+      <td>=</td>
+      <td>2021-10-29</td>
+      <td>14</td>
+      <td>spotify:album:32iAEBstCjauDhyKpGjTuq</td>
       <td>1</td>
-      <td>205266</td>
-      <td>True</td>
-      <td>https://api.spotify.com/v1/tracks/1VNARx6Sm6ZY...</td>
-      <td>61</td>
-      <td>spotify:track:1VNARx6Sm6ZYAsDMCGiU1B</td>
+      <td>230746</td>
+      <td>False</td>
+      <td>https://api.spotify.com/v1/tracks/3rmo8F54jFF8...</td>
+      <td>86</td>
+      <td>spotify:track:3rmo8F54jFF8OgYsqTxm5d</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>5LZVK19ieaV8Mk9FsqTL3F</td>
-      <td>Ridere</td>
-      <td>Pinguini Tattici Nucleari</td>
-      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
-      <td>Fuori dall'Hype Ringo Starr</td>
-      <td>2020-02-07</td>
-      <td>15</td>
-      <td>spotify:album:56JsicBPrw88plclhKK74J</td>
+      <td>7qiZfU4dY1lWllzX7mPBI3</td>
+      <td>Shape of You</td>
+      <td>Ed Sheeran</td>
+      <td>spotify:artist:6eUKZXaKkcviH0Ku9w2n3V</td>
+      <td>÷ (Deluxe)</td>
+      <td>2017-03-03</td>
+      <td>16</td>
+      <td>spotify:album:3T4tUhGYeRNVUGevb0wThu</td>
       <td>1</td>
-      <td>214733</td>
+      <td>233712</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/5LZVK19ieaV8...</td>
-      <td>69</td>
-      <td>spotify:track:5LZVK19ieaV8Mk9FsqTL3F</td>
+      <td>https://api.spotify.com/v1/tracks/7qiZfU4dY1lW...</td>
+      <td>88</td>
+      <td>spotify:track:7qiZfU4dY1lWllzX7mPBI3</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>1PWOkqMORYdGa0OEh2GaXM</td>
-      <td>Notti In Bianco</td>
-      <td>BLANCO</td>
-      <td>spotify:artist:1MRiIeZbc0cRuxOafDUCtH</td>
-      <td>Blu Celeste</td>
-      <td>2021-09-09</td>
-      <td>12</td>
-      <td>spotify:album:7zFt7hLRPxemmlzVzg5uec</td>
+      <td>0m6unz6uP458oqXaPWyIgt</td>
+      <td>Knew That Second</td>
+      <td>MATTN</td>
+      <td>spotify:artist:1RQ3ZwCNI7KniEKIN5kkio</td>
+      <td>Knew That Second</td>
+      <td>2021-04-30</td>
       <td>1</td>
-      <td>176400</td>
+      <td>spotify:album:79SkOcwPqz3dsNo2dKTigJ</td>
+      <td>1</td>
+      <td>160174</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/1PWOkqMORYdG...</td>
-      <td>65</td>
-      <td>spotify:track:1PWOkqMORYdGa0OEh2GaXM</td>
+      <td>https://api.spotify.com/v1/tracks/0m6unz6uP458...</td>
+      <td>32</td>
+      <td>spotify:track:0m6unz6uP458oqXaPWyIgt</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>0ZI9cTwtcaYeVcFjwT51ow</td>
-      <td>Tu si a fine do' munno</td>
-      <td>Angelo Famao</td>
-      <td>spotify:artist:46otmViklVNVVCHQvUCWfC</td>
-      <td>Tu si a fine do' munno</td>
-      <td>2018-03-08</td>
+      <td>3DXncPQOG4VBw3QHh3S817</td>
+      <td>I'm the One (feat. Justin Bieber, Quavo, Chanc...</td>
+      <td>DJ Khaled</td>
+      <td>spotify:artist:0QHgL1lAIqAw0HtD7YldmP</td>
+      <td>Grateful</td>
+      <td>2017-06-22</td>
+      <td>22</td>
+      <td>spotify:album:4JBZ0QHveEpESepanNBG8A</td>
       <td>1</td>
-      <td>spotify:album:2NDLRqawa2dlbPCHjOW4ze</td>
-      <td>1</td>
-      <td>180402</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/0ZI9cTwtcaYe...</td>
-      <td>58</td>
-      <td>spotify:track:0ZI9cTwtcaYeVcFjwT51ow</td>
+      <td>288600</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/3DXncPQOG4VB...</td>
+      <td>72</td>
+      <td>spotify:track:3DXncPQOG4VBw3QHh3S817</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>4DRyrGfwWACRYP9BDnEFcq</td>
-      <td>BUGIE (feat. Rkomi &amp; Carl Brave)</td>
-      <td>Madame</td>
-      <td>spotify:artist:1vgQksyJ0IVz8y9XerEOy3</td>
-      <td>MADAME</td>
-      <td>2021-06-03</td>
-      <td>18</td>
-      <td>spotify:album:7oF6ed3aSHU6aDD4MD3LIr</td>
+      <td>6pGujpqkrR2cxObxLfxhID</td>
+      <td>New Highs (Angemi Remix)</td>
+      <td>Crazy Donkey</td>
+      <td>spotify:artist:4FFIm6lcL4VDCTWteKwspi</td>
+      <td>New Highs (Angemi Remix)</td>
+      <td>2022-06-24</td>
+      <td>2</td>
+      <td>spotify:album:5lROpaNiu39BJIyMe54dq6</td>
       <td>1</td>
-      <td>171602</td>
+      <td>192000</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/4DRyrGfwWACR...</td>
-      <td>53</td>
-      <td>spotify:track:4DRyrGfwWACRYP9BDnEFcq</td>
+      <td>https://api.spotify.com/v1/tracks/6pGujpqkrR2c...</td>
+      <td>6</td>
+      <td>spotify:track:6pGujpqkrR2cxObxLfxhID</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>4Ip9hR1xlH7OB8Rj4OleqG</td>
-      <td>Gioventù Brucata</td>
-      <td>Pinguini Tattici Nucleari</td>
-      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
-      <td>Gioventù brucata</td>
-      <td>2017-04-14</td>
-      <td>12</td>
-      <td>spotify:album:44CqJXEel3uPQZeg0ZHyct</td>
+      <td>00Blm7zeNqgYLPtW6zg8cj</td>
+      <td>One Right Now (with The Weeknd)</td>
+      <td>Post Malone</td>
+      <td>spotify:artist:246dkjvS1zLTtiykXe5h60</td>
+      <td>One Right Now</td>
+      <td>2021-11-05</td>
       <td>1</td>
-      <td>324506</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/4Ip9hR1xlH7O...</td>
-      <td>45</td>
-      <td>spotify:track:4Ip9hR1xlH7OB8Rj4OleqG</td>
+      <td>spotify:album:6fgSKdHloRioPrZ9oJC7FH</td>
+      <td>1</td>
+      <td>193506</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/00Blm7zeNqgY...</td>
+      <td>79</td>
+      <td>spotify:track:00Blm7zeNqgYLPtW6zg8cj</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>50kpGaPAhYJ3sGmk6vplg0</td>
-      <td>Love Yourself</td>
-      <td>Justin Bieber</td>
-      <td>spotify:artist:1uNFoZAHBGtllmzznpCI3s</td>
-      <td>Purpose (Deluxe)</td>
-      <td>2015-11-13</td>
-      <td>19</td>
-      <td>spotify:album:6Fr2rQkZ383FcMqFyT7yPr</td>
+      <td>0fYcr6JyV9rRNxopsF5vRm</td>
+      <td>Hate You</td>
+      <td>Angemi</td>
+      <td>spotify:artist:3q5DAsSH8efMqNxjxbdpGx</td>
+      <td>Hate You</td>
+      <td>2022-04-08</td>
       <td>1</td>
-      <td>233720</td>
+      <td>spotify:album:76dSYQPMxV6YHSPdLZ7e9i</td>
+      <td>1</td>
+      <td>164531</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/50kpGaPAhYJ3...</td>
-      <td>85</td>
-      <td>spotify:track:50kpGaPAhYJ3sGmk6vplg0</td>
+      <td>https://api.spotify.com/v1/tracks/0fYcr6JyV9rR...</td>
+      <td>20</td>
+      <td>spotify:track:0fYcr6JyV9rRNxopsF5vRm</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>0bKDQionn4VKcgNKbs4SWX</td>
-      <td>Pastello Bianco</td>
-      <td>Pinguini Tattici Nucleari</td>
-      <td>spotify:artist:6RdcIWVKYYzNzjQRd3oyHS</td>
-      <td>AHIA!</td>
-      <td>2020-12-04</td>
-      <td>7</td>
-      <td>spotify:album:0b2peKNz7zmn4xIxfPBUPa</td>
+      <td>0g2Bbgy7P41pFjMWJuzsf4</td>
+      <td>STAYING ALIVE (feat. Drake &amp; Lil Baby)</td>
+      <td>DJ Khaled</td>
+      <td>spotify:artist:0QHgL1lAIqAw0HtD7YldmP</td>
+      <td>STAYING ALIVE (feat. Drake &amp; Lil Baby)</td>
+      <td>2022-08-05</td>
       <td>1</td>
-      <td>236417</td>
-      <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/0bKDQionn4VK...</td>
+      <td>spotify:album:0oEsQwXJhNbbb8VT0xOMok</td>
+      <td>1</td>
+      <td>178176</td>
+      <td>True</td>
+      <td>https://api.spotify.com/v1/tracks/0g2Bbgy7P41p...</td>
       <td>72</td>
-      <td>spotify:track:0bKDQionn4VKcgNKbs4SWX</td>
+      <td>spotify:track:0g2Bbgy7P41pFjMWJuzsf4</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>1uXJYnCsXy2v50y0fDEEiV</td>
-      <td>LA CANZONE NOSTRA ⟁ ︎(con BLANCO &amp; SALMO)</td>
-      <td>MACE</td>
-      <td>spotify:artist:7gjqZ8coFZimZDtdk04WP1</td>
-      <td>OBE</td>
-      <td>2021-02-04</td>
-      <td>17</td>
-      <td>spotify:album:2oT1W5fYFSfU3fz5Q55HWj</td>
+      <td>0rsTDgGRlXKuzSAxcdb4Ns</td>
+      <td>Borracho</td>
+      <td>Sech</td>
+      <td>spotify:artist:77ziqFxp5gaInVrF2lj4ht</td>
+      <td>Borracho</td>
+      <td>2021-11-26</td>
       <td>1</td>
-      <td>237613</td>
+      <td>spotify:album:0DzwLlhnxgjPgL3uWNZTWG</td>
+      <td>1</td>
+      <td>219750</td>
       <td>False</td>
-      <td>https://api.spotify.com/v1/tracks/1uXJYnCsXy2v...</td>
+      <td>https://api.spotify.com/v1/tracks/0rsTDgGRlXKu...</td>
       <td>63</td>
-      <td>spotify:track:1uXJYnCsXy2v50y0fDEEiV</td>
+      <td>spotify:track:0rsTDgGRlXKuzSAxcdb4Ns</td>
     </tr>
   </tbody>
 </table>
@@ -15705,14 +16370,109 @@ Una volta cliccato su <em>create an app</em> la schermata si richiede alcune inf
 </div>
 
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Una volta ottenuta la lista desiderata, potremmo scorrere lungo il dataframe e per ogni elemento richiedere ad esempio ulteriori informazioni più dettagliate, grazie all'apposita API <strong>audio_features</strong> mostrata di seguito</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># richiesta delle features di una track</span>
+<span class="n">audio_features</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">audio_features</span><span class="p">(</span><span class="n">tracks</span><span class="o">=</span><span class="p">[</span><span class="n">tracks_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Id&#39;</span><span class="p">]])</span>
+
+<span class="c1"># risposta</span>
+<span class="n">audio_features</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[{&#39;danceability&#39;: 0.733,
+  &#39;energy&#39;: 0.67,
+  &#39;key&#39;: 5,
+  &#39;loudness&#39;: -6.009,
+  &#39;mode&#39;: 1,
+  &#39;speechiness&#39;: 0.0751,
+  &#39;acousticness&#39;: 0.121,
+  &#39;instrumentalness&#39;: 0,
+  &#39;liveness&#39;: 0.121,
+  &#39;valence&#39;: 0.472,
+  &#39;tempo&#39;: 100.964,
+  &#39;type&#39;: &#39;audio_features&#39;,
+  &#39;id&#39;: &#39;0O6u0VJ46W86TxN9wgyqDj&#39;,
+  &#39;uri&#39;: &#39;spotify:track:0O6u0VJ46W86TxN9wgyqDj&#39;,
+  &#39;track_href&#39;: &#39;https://api.spotify.com/v1/tracks/0O6u0VJ46W86TxN9wgyqDj&#39;,
+  &#39;analysis_url&#39;: &#39;https://api.spotify.com/v1/audio-analysis/0O6u0VJ46W86TxN9wgyqDj&#39;,
+  &#39;duration_ms&#39;: 192841,
+  &#39;time_signature&#39;: 4}]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Le informazioni appena ritornate indicano attributi specifici della traccia audio, come:</p>
+<ul>
+<li><strong>Speechiness</strong>: indica quanto una traccia contiene parole rispetto alla musica.</li>
+<li><strong>Acousticness</strong>: indica quanto una traccia è acustica rispetto all'uso di strumenti elettronici.</li>
+<li><strong>Instrumentalness</strong>: indica quanto una traccia contiene parti strumentali rispetto alla presenza di voci.</li>
+<li><strong>Liveness</strong>: indica quanto una traccia è stata registrata dal vivo rispetto a una registrazione in studio.</li>
+<li><strong>Valence</strong>: indica la positività o negatività percepita della traccia.</li>
+<li><strong>Tempo</strong>: indica il ritmo della traccia espresso in BPM (battiti per minuto).</li>
+<li><strong>Loudness</strong>: indica il volume medio della traccia in decibel (dB).</li>
+<li><strong>Energy</strong>: indica la quantità di energia percepita nella traccia.</li>
+</ul>
+<p>Queste informazioni sono spesso utilizzate per classificare e catalogare le tracce musicali in base alle loro caratteristiche sonore. Ad esempio, una traccia con un alto valore di acousticness e un basso valore di instrumentalness potrebbe essere considerata una canzone acustica tradizionale, mentre una traccia con un alto valore di energy e loudness potrebbe essere considerata una canzone adatta a ballare.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Conclusione">Conclusione<a class="anchor-link" href="#Conclusione">&#182;</a></h2><p>Questo student tutorial si pone come piccola guida di introduzione allo sviluppo di applicazioni per l'analisi dati e di statistica, illustrando i passaggi per ottenere l'autenticazione e presentando in breve le API ufficiali.<br><br>
-Per approfondimenti, visitare la documentazione ufficiale delle API di Spotify: <a>https://developer.spotify.com/documentation/</a></p>
+Per approfondimenti, visitare la documentazione ufficiale delle API di Spotify: <a><a href="https://developer.spotify.com/documentation/">https://developer.spotify.com/documentation/</a></a></p>
 
 </div>
 </div>
