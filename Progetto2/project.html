@@ -14608,13 +14608,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Introduzione">Introduzione<a class="anchor-link" href="#Introduzione">&#182;</a></h2><p>Questo programma, grazie alle informazioni che è possibile ricavare dalle API di Spotify, permette di creare
-una playlist con album e canzoni di autori preferiti dagli utenti che la richiedono, arricchendola, tramite
-opportuni algoritmi, anche con alcune delle loro canzoni più in voga del momento.
+<h2 id="Introduzione">Introduzione<a class="anchor-link" href="#Introduzione">&#182;</a></h2><p>Questo programma, grazie alle informazioni che è possibile ricavare dalle API REST di Spotify, permette di creare
+una playlist con album e canzoni di autori preferiti dagli utenti che la compongono, arricchendola tramite
+opportuni algoritmi ed infinte verranno aggiunte alcune delle canzoni più in voga del momento selezionate dagli autori suggeriti dal programma.
 <br><br>
 Prima di iniziare, è opportuno precisare che tutte le informazioni, dati e quant’altro ricavato e/o elaborato dal
-programma stesso, NON legge in alcun modo tutti quei dati e informazioni che Spotify ritiene private per
-l’utente (tranne quelle di chi fornisce la coppia di chiavi d’accesso per le API)</p>
+programma stesso, NON ottiene (o conserva) in alcun modo tutti quei dati e informazioni che Spotify ritiene private per
+l’utente (tranne pre quelle di chi fornisce la coppia di chiavi d’accesso per le API)</p>
 
 </div>
 </div>
@@ -14626,11 +14626,10 @@ l’utente (tranne quelle di chi fornisce la coppia di chiavi d’accesso per le
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Come-funziona">Come funziona<a class="anchor-link" href="#Come-funziona">&#182;</a></h2><p>Tramite la sottoscrizione all’account developer con Spotify e all’utilizzo di librerie in Python è possibile
-realizzare moltissimi tool.
+<h2 id="Come-funziona">Come funziona<a class="anchor-link" href="#Come-funziona">&#182;</a></h2><p>Tramite la sottoscrizione all’account Spotify developer e con l’utilizzo di opportune librerie, in Python è possibile
+realizzare moltissimi tool come il progetto che segue..
 <br><br>
-Questo progetto richiede per iniziare, una lista di utenti, iscritti semplicemente alla piattaforma e che abbiano,
-non necessariamente, creato in precedenza delle loro playlist pubbliche.<br>
+Questo progetto inizialmente, richiede l'inserimento di una lista di utenti, iscritti semplicemente alla piattaforma e che abbiano - non necessariamente - creato già delle loro playlist pubbliche.<br>
 Dopo aver definito il gruppo di utenti, il tool procederà alla raccolta dei dati, memorizzando informazioni
 come: nome utente, nomi delle playlist, le relative canzoni inserite, e molto altro.
 Successivamente, durante la fase dell’analisi dei dati, grazie al supporto di alcune librerie, come pandas e
@@ -14683,7 +14682,10 @@ piattaforma stessa di alcune delle canzoni più in voga del momento, per inserir
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">spotipy</span>
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">length_hint</span>
@@ -15779,7 +15781,7 @@ c:\Users\franc\Documents\Università\ProgettoSMM\Progetto2\group.py:57: FutureWa
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Analisi-dei-dati">Analisi dei dati<a class="anchor-link" href="#Analisi-dei-dati">&#182;</a></h2><p>In questo step andremo ad analizzare tutti i dati raccolti precedentemente, tramite un algoritmo basato sul metodo <b>Content-based filtering</b> come sistema di raccomandazione, per creare infine una playlist che accomuna le preferenze degli utenti in lista.</p>
+<h2 id="Analisi-dei-dati">Analisi dei dati<a class="anchor-link" href="#Analisi-dei-dati">&#182;</a></h2><p>Andremo ad analizzare tutti i dati raccolti precedentemente, tramite un algoritmo basato sul metodo <b>Content-based filtering</b> come sistema di raccomandazione, per creare infine una playlist che accomuna le preferenze degli utenti in lista.</p>
 
 </div>
 </div>
@@ -15824,6 +15826,29 @@ Questo modello può essere diviso in due tipi principali:
 <p>Vale la pena notare che il metodo di filtering basato sui contenuti può essere migliorato includendo informazioni aggiuntive, come le informazioni demografiche dell'utente, o integrandolo con altre tecniche di raccomandazione, come il Collaborative filtering.<br></p>
 <br>
 Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi agli utenti con una storia di interazioni, non è bravo a raccomandare elementi a nuovi utenti senza alcuna cronologia, a questo scopo, può essere utilizzata una tecnica di filtraggio ibrido che combina i punti di forza sia del filtraggio basato sui contenuti che del filtraggio collaborativo.
+
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Raccolta-dei-dati">Raccolta dei dati<a class="anchor-link" href="#Raccolta-dei-dati">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Di seguito andremo ad inizializzare il dataset grazie alle informazioni raccolte negli step precedenti, così da poterlo partizionare in Training set e Test set, e successivamente verificarne il risultato.</p>
 
 </div>
 </div>
@@ -15882,10 +15907,10 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prendi i top 5 artisti e cerca le loro 2 canzoni più in voga</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prendi i top 7 artisti e cerca le loro 10 canzoni più in voga</span>
 
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">take_tracks</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">take_tracks</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">get_artists_pivot_table</span><span class="p">()[:</span><span class="n">limit</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -15937,10 +15962,10 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prendi i top 5 album e cerca le loro 2 canzoni più in voga</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prendi i top 8 album e cerca le loro 10 canzoni più in voga</span>
 
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">take_tracks</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">take_tracks</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">get_albums_pivot_table</span><span class="p">()[:</span><span class="n">limit</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -15981,6 +16006,29 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 </div>
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Training-set-&amp;-Test-set">Training set &amp; Test set<a class="anchor-link" href="#Training-set-&amp;-Test-set">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Di seguito andremo a partizionare il dataset in Trainig set (al 70%) e in Test set (al 30%) in maniera randomica. Successivamente ne verificheremo il risultato confrontandone la similarità tra alcune features.</p>
+
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15989,10 +16037,11 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definizione della playlist raccomandata</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Suddivido il dataframe con la tabella pivot di tutte le tracks ottenute in Training set e Test set</span>
 
-<span class="c1"># Inizializzo la Recommended playlist</span>
-<span class="n">group</span><span class="o">.</span><span class="n">recommended_playlist</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_artists_top_tracks</span><span class="p">()</span> <span class="o">+</span> <span class="n">group</span><span class="o">.</span><span class="n">get_albums_top_tracks</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_tracks_pivot_table</span><span class="p">()</span>
+
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16000,6 +16049,17 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 </div>
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Training-set">Training set<a class="anchor-link" href="#Training-set">&#182;</a></h4>
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16008,17 +16068,23 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definisco la recommended tracks playlist</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definisco la recommended tracks playlist dal Training set</span>
 
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">limit</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">__tracks_list</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_playlist_tracks_dataframe</span><span class="p">()</span>
 
+<span class="c1"># Dataset di supporto</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">train_df</span>
+
+<span class="c1"># Inizializzo la Recommended playlist</span>
+<span class="n">group</span><span class="o">.</span><span class="n">recommended_playlist</span> <span class="o">=</span> <span class="p">[]</span>
+
 <span class="c1"># Fintantoché la lista non raggiunge il limit desiderato</span>
 <span class="k">while</span> <span class="n">length_hint</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">get_recommended_playlist</span><span class="p">())</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">:</span>
 
     <span class="c1"># Prondo le informazioni della track</span>
-    <span class="n">track_id</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_tracks_pivot_table</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">track_id</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">__tracks_list</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">__tracks_list</span><span class="p">[</span><span class="s1">&#39;track_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">track_id</span><span class="p">]</span>
     <span class="n">item</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -16047,6 +16113,314 @@ Inoltre, mentre il Content-based filtering è adatto per raccomandare elementi a
 </div>
 </div>
 
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Riporto le recommended tracks (ottenute dal training set) su una lista di supporto</span>
+
+<span class="n">recommended_playlist_train_df</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_recommended_playlist</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Test-set">Test set<a class="anchor-link" href="#Test-set">&#182;</a></h4>
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definisco la recommended tracks playlist sul Test set</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">__tracks_list</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_playlist_tracks_dataframe</span><span class="p">()</span>
+
+<span class="c1"># Dataset di supporto</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">test_df</span>
+
+<span class="c1"># Inizializzo la Recommended playlist</span>
+<span class="n">group</span><span class="o">.</span><span class="n">recommended_playlist</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Fintantoché la lista non raggiunge il limit desiderato</span>
+<span class="k">while</span> <span class="n">length_hint</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">get_recommended_playlist</span><span class="p">())</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">:</span>
+
+    <span class="c1"># Prondo le informazioni della track</span>
+    <span class="n">track_id</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">__tracks_list</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">__tracks_list</span><span class="p">[</span><span class="s1">&#39;track_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">track_id</span><span class="p">]</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">track</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;album_id&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;album_id&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;album_name&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;album_name&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;album_release_date&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;album_release_date&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;artist_id&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;artist_id&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;artist_name&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;artist_name&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;track_disc_number&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;track_disc_number&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;track_duration_ms&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;track_duration_ms&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;track_explicit&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;track_explicit&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;track_popularity&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;track_popularity&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;track_id&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;track_id&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;track_name&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;track_name&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Appendo l&#39;item in lista</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">append_to_recommend_playlist</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Riporto le recommended tracks (ottenute dal training set) su una lista di supporto</span>
+
+<span class="n">recommended_playlist_test_df</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_recommended_playlist</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Verifica-della-qualit%C3%A0-del-risultato">Verifica della qualit&#224; del risultato<a class="anchor-link" href="#Verifica-della-qualit%C3%A0-del-risultato">&#182;</a></h4>
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Analisi Training set</span>
+
+<span class="n">tracks_features_train_list_energy</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_train_list_acousticness</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_train_list_tempo</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_train_list_loudness</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_train_list_valence</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_train_list_speechiness</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Per ogni elemento della lista di supporto ricavata dal Training set</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">recommended_playlist_train_df</span><span class="p">:</span>
+
+    <span class="c1"># Cerco le features della track corrente</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">audio_features</span><span class="p">(</span><span class="n">tracks</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;track_id&#39;</span><span class="p">]])</span>
+
+    <span class="c1"># Converto la risposta in json</span>
+    <span class="n">items_raw</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">items_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">items_raw</span><span class="p">)</span>
+    <span class="n">items_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">items_json</span><span class="p">)</span>
+
+    <span class="c1"># Estrapolo alcune delle features che caratterizzano la track corrente</span>
+    <span class="n">tracks_features_train_list_energy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;energy&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_train_list_acousticness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;acousticness&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_train_list_tempo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tempo&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_train_list_loudness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;loudness&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_train_list_valence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;valence&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_train_list_speechiness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;speechiness&#39;</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Analisi Test set</span>
+
+<span class="n">tracks_features_test_list_energy</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_test_list_acousticness</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_test_list_tempo</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_test_list_loudness</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_test_list_valence</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tracks_features_test_list_speechiness</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Per ogni elemento della lista di supporto ricavata dal Test set</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">recommended_playlist_test_df</span><span class="p">:</span>
+
+    <span class="c1"># Cerco le features della track corrente</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">audio_features</span><span class="p">(</span><span class="n">tracks</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;track_id&#39;</span><span class="p">]])</span>
+
+    <span class="c1"># Converto la risposta in json</span>
+    <span class="n">items_raw</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">items_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">items_raw</span><span class="p">)</span>
+    <span class="n">items_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">items_json</span><span class="p">)</span>
+
+    <span class="c1"># Estrapolo alcune delle features che caratterizzano la track corrente</span>
+    <span class="n">tracks_features_test_list_energy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;energy&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_test_list_acousticness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;acousticness&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_test_list_tempo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tempo&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_test_list_loudness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;loudness&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_test_list_valence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;valence&#39;</span><span class="p">))</span>
+    <span class="n">tracks_features_test_list_speechiness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;speechiness&#39;</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calcolo la similarità degli elementi delle due liste</span>
+
+
+<span class="c1"># Conversione delle liste in array numpy</span>
+
+<span class="n">tracks_features_train_list_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_train_list_energy</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tracks_features_test_list_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_test_list_energy</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tracks_features_train_list_acousticness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_train_list_acousticness</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tracks_features_test_list_acousticness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_test_list_acousticness</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tracks_features_train_list_tempo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_train_list_tempo</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tracks_features_test_list_tempo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_test_list_tempo</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tracks_features_train_list_loudness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_train_list_loudness</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tracks_features_test_list_loudness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_test_list_loudness</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tracks_features_train_list_valence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_train_list_valence</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tracks_features_test_list_valence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_test_list_valence</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tracks_features_train_list_speechiness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_train_list_speechiness</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tracks_features_test_list_speechiness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tracks_features_test_list_speechiness</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1"># Calcolo del cosine similarity</span>
+
+<span class="n">similarity_energy</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tracks_features_train_list_energy</span><span class="p">,</span> <span class="n">tracks_features_test_list_energy</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">similarity_acousticness</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tracks_features_train_list_acousticness</span><span class="p">,</span> <span class="n">tracks_features_test_list_acousticness</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">similarity_tempo</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tracks_features_train_list_tempo</span><span class="p">,</span> <span class="n">tracks_features_test_list_tempo</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">similarity_loudness</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tracks_features_train_list_loudness</span><span class="p">,</span> <span class="n">tracks_features_test_list_loudness</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">similarity_valence</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tracks_features_train_list_valence</span><span class="p">,</span> <span class="n">tracks_features_test_list_valence</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">similarity_speechiness</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tracks_features_train_list_speechiness</span><span class="p">,</span> <span class="n">tracks_features_test_list_speechiness</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="c1"># Stampo i risultati</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;energy similarity: &#39;</span><span class="p">,</span> <span class="n">similarity_energy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;acousticness similarity: &#39;</span><span class="p">,</span> <span class="n">similarity_acousticness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tempo similarity: &#39;</span><span class="p">,</span> <span class="n">similarity_tempo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loudness similarity: &#39;</span><span class="p">,</span> <span class="n">similarity_loudness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valence similarity: &#39;</span><span class="p">,</span> <span class="n">similarity_valence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;speechiness similarity: &#39;</span><span class="p">,</span> <span class="n">similarity_speechiness</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>energy similarity:  0.9191645269947084
+acousticness similarity:  0.2796277768243608
+tempo similarity:  0.9642692498474579
+loudness similarity:  0.7799224674254003
+valence similarity:  0.8116552047901227
+speechiness similarity:  0.6307600434783865
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Le informazioni appena ritornate indicano <strong>features specifiche</strong> della traccia audio, ed in particolare il risultato ottenuto con il <strong>cosine similarity</strong>, dove un valore prossimo ad 1 indica che gli elementi delle due liste sono simili, mentre sono diversi quando il valore è prossimo a -1:</p>
+<br>
+- **Energy**: indica la quantità di energia percepita nella traccia.
+- **Acousticness**: indica quanto una traccia è acustica rispetto all'uso di strumenti elettronici.
+- **Tempo**: indica il ritmo della traccia espresso in BPM (battiti per minuto).
+- **Loudness**: indica il volume medio della traccia in decibel (dB).
+- **Valence**: indica la positività o negatività percepita della traccia.
+- **Speechiness**: indica quanto una traccia contiene parole rispetto alla musica.
+
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Playlist-pubblicata!">Playlist pubblicata!<a class="anchor-link" href="#Playlist-pubblicata!">&#182;</a></h3>
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16175,17 +16549,6 @@ Playlist owner Francesco Petrosino
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="FINE!">FINE!<a class="anchor-link" href="#FINE!">&#182;</a></h4>
-</div>
-</div>
-</div>
-</div>
-<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Metodi-di-Sistemi-di-raccomandazione-a-confronto">Metodi di Sistemi di raccomandazione a confronto<a class="anchor-link" href="#Metodi-di-Sistemi-di-raccomandazione-a-confronto">&#182;</a></h2>
 </div>
 </div>
@@ -16238,8 +16601,7 @@ Per implementare questo sistema, il primo passo è raccogliere dati sul comporta
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>È stato scelto di implementare un algoritmo basato sul metodo di <b>Content-based filtering</b> perché si basa sull'analisi di un set di informazioni, dove è possibile che non tutti gli utenti hanno una &quot;storia passata&quot;, ovvero che non hanno espresso opinione, alimentando così il set di dati. Mentre per il metodo <b>Collaborative filtering</b> per ottenere un risultato accettabile, è importante che tutti gli utenti partecipano nella raccolta dei dati.<br>
-In questo caso, dunque, si presuppone che gli elementi scelti dall'algoritmo, possano piacere pure agli utenti che non hanno espresso alcuna opinione, in quanto, piacciono ad altri utenti della lista.</p>
+<p>Date le due definizioni scritte nei punti precedenti, abbiamo che: il <strong>Content-based filtering</strong> utilizza le informazioni per creare un profilo di interesse per l'utente e fare le raccomandazioni in base al grado di somiglianza tra i profili degli utenti e i contenuti. Al contrario, il <strong>Collaborative filtering</strong> si basa sulle interazioni tra gli utenti e i contenuti, ma solo se questi hanno contribuito a &quot;popolare&quot; il <strong>Dataset</strong> iniziale.</p>
 
 </div>
 </div>
@@ -16265,6 +16627,44 @@ In questo caso, dunque, si presuppone che gli elementi scelti dall'algoritmo, po
 <p><img src="img/Feedback.png" alt="Feedback" />
 <img src="img/Feedback1.png" alt="Feedback1" />
 <img src="img/Feedback2.png" alt="Feedback2" /></p>
+
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Dal sondaggio possiamo evincere che le tracks inserite nella playlist suggerita dall'algoritmo, include sia tracks che generalmente gli stessi utenti ascoltano di frequente e quindi vengono apprezzate, invece non hanno ricevuto lo stesso punteggio quelle tracks che sono state inserite come suggerimento. Alla fine, il grado di soddisfazione complessivo degli utenti risulta essere sopra la media.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Conclusione">Conclusione<a class="anchor-link" href="#Conclusione">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>È stato scelto di implementare un algoritmo basato sul metodo di <b>Content-based filtering</b> perché si basa sull'analisi di un set di informazioni, dove è possibile che non tutti gli utenti hanno una &quot;storia passata&quot;, ovvero che non hanno espresso opinione, alimentando così il set di dati. Mentre per il metodo <b>Collaborative filtering</b> per ottenere un risultato accettabile, è importante che tutti gli utenti partecipano nella raccolta dei dati.<br>
+In questo caso, dunque, si presuppone che gli elementi scelti dall'algoritmo, possano piacere pure agli utenti che non hanno espresso alcuna opinione, in quanto, piacciono ad altri utenti della lista.</p>
+<p>È possibile notare come tra i risultati ottenuti dalle verifiche, le features come <em>energy</em>, <em>tempo</em> e <em>valence</em> abbiano ottenuto un valore di similitudine superiore a 0.8, mentre solo l'<em>acousticness</em> ha ottenuto un valore prossimo allo 0.
+Il sondaggio riporta i feedback ricevuti dagli utenti che hanno preso parte al progetto come &quot;attori&quot; per la simulazione di un caso di utilizzo reale, denota come i risultati ottenuti e le verifiche analizzate, siano pressoché positive.</p>
 
 </div>
 </div>
