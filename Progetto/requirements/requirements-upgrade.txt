@@ -1,9 +1,0 @@
-pandas
-imageio
-opencv-python
-requests
-protobuf
-keras_preprocessing
-tensorflow
-torch
-torchvision

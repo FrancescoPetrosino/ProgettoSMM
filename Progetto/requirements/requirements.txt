@@ -1,5 +1,0 @@
-imageAI==2.0.3
-requests-toolbelt==0.7.0
-moviepy==0.2.2.11
-numpy==1.23.1
-keras==2.4
